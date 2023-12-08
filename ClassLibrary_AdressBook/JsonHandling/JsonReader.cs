@@ -10,12 +10,12 @@ public class JsonReader : IJsonReader
     public List<IContact> LoadFromFile(string fileName)
     {
         List<IContact> loadedContacts = new List<IContact>();
-
-        string folderPath = @"C:\EC\csharp\Assignment_AdressBook\Contact_Files";
-        string filePath = Path.Combine(folderPath, fileName);
-
         try
         {
+
+            string folderPath = @"C:\EC\csharp\Assignment_AdressBook\Contact_Files";
+            string filePath = Path.Combine(folderPath, fileName);
+
             Thread.Sleep(1000);
 
             if (File.Exists(filePath))

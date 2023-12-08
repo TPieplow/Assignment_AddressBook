@@ -10,7 +10,6 @@ public class ContactServiceConsoleApp : IContactServiceConsoleApp
     private readonly IContactService _contactService;
     private readonly ShowFolder _showFolder;
 
-
     public ContactServiceConsoleApp(IContactService contactService, ShowFolder showFolder)
     {
         _contactService = contactService;
@@ -57,6 +56,7 @@ public class ContactServiceConsoleApp : IContactServiceConsoleApp
             {
                 IContact contact = _contactService?.GetContact(email)!;
                 Console.Clear();
+                Console.WriteLine($"Contact information for: {contact.FirstName} {contact.LastName}");
                 ContactInformation.DisplayDetails(contact);
                 DisplayMessage.Message("");
             }
@@ -100,14 +100,14 @@ public class ContactServiceConsoleApp : IContactServiceConsoleApp
             Console.Clear();
             Console.WriteLine("### UPDATE CONTACT ###");
             Console.WriteLine("Enter email of the employee you want to update");
-            string email = Console.ReadLine()!;
+            string email = Console.ReadLine() ?? string.Empty!;
 
             if (email is not null)
             {
-                IContact contactToUpdate = _contactService.GetContact(email);
+                IContact contactToUpdate = _contactService?.GetContact(email)!;
                 Console.WriteLine($"Contact to update: {contactToUpdate.FirstName} ");
 
-                if (contactToUpdate != null)
+                if (contactToUpdate is not null)
                 {
                     string newFirstName = Helpers.GetValidInput("First Name: ");
                     string newLastName = Helpers.GetValidInput("Last Name: ");
@@ -120,10 +120,10 @@ public class ContactServiceConsoleApp : IContactServiceConsoleApp
 
                     string folderPath = @"C:\EC\csharp\Assignment_AdressBook\Contact_Files";
                     string[] files = Directory.GetFiles(folderPath);
-                    _showFolder.AvailableFiles(folderPath);
+                    _showFolder?.AvailableFiles(folderPath);
 
                     Console.Write("Enter the name of the file you wanna update: ");
-                    string currentFileName = Console.ReadLine()!;
+                    string currentFileName = Console.ReadLine() ?? string.Empty!;
 
                     contactToUpdate.FirstName = newFirstName;
                     contactToUpdate.LastName = newLastName;
@@ -131,7 +131,7 @@ public class ContactServiceConsoleApp : IContactServiceConsoleApp
                     contactToUpdate.Address = newAddress;
                     contactToUpdate.Phone = newNumber;
 
-                    _contactService.UpdateContact(contactToUpdate, currentFileName);
+                    _contactService?.UpdateContact(contactToUpdate, currentFileName);
                     DisplayMessage.Message($"Contact '{contactToUpdate.FirstName}' successfully updated");
                 }
                 else
@@ -153,11 +153,11 @@ public class ContactServiceConsoleApp : IContactServiceConsoleApp
             Console.Clear();
             Console.WriteLine("### DELETE CONTACT ###");
             Console.WriteLine("E-mail of user to remove: ");
-            string email = Console.ReadLine()!;
+            string email = Console.ReadLine() ?? string.Empty!;
 
             if (!string.IsNullOrEmpty(email))
             {
-                _contactService.RemoveContact(email);
+                _contactService?.RemoveContact(email);
                 DisplayMessage.Message($"Contact with e-mail {email} removed successfully.");
             }
             else

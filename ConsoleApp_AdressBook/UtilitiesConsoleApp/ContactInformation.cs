@@ -7,12 +7,13 @@ public class ContactInformation
 {
     public static void DisplayDetails(IContact contact)
     {
-        Console.WriteLine($" ### Contact Details for contact '{contact.FirstName} {contact.LastName}' ###");
         Console.WriteLine("------------------------------------------------------------------------------");
-        Console.WriteLine($"{contact.Email}");
-        Console.WriteLine($"{contact.Phone}");
-        Console.WriteLine($"{contact.Address}");
-        Console.WriteLine($"{contact.Id}");
+        Console.WriteLine($"First name: \t{contact.FirstName}");
+        Console.WriteLine($"Last name: \t{contact.LastName}");
+        Console.WriteLine($"E-mail: \t{contact.Email}");
+        Console.WriteLine($"Phone number: \t{contact.Phone}");
+        Console.WriteLine($"Address: \t{contact.Address}");
+        Console.WriteLine($"ID: \t\t{contact.Id}");
         Console.WriteLine("------------------------------------------------------------------------------");
     }
 }

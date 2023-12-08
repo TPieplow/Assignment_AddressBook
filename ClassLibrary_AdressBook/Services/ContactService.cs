@@ -37,7 +37,7 @@ public class ContactService : IContactService
             return _contactList.FirstOrDefault(c => c.Email == email)!;
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
-        return null!;
+        return null;
     }
 
     public IEnumerable<IContact> GetContacts()
@@ -51,26 +51,31 @@ public class ContactService : IContactService
         {
             IContact existingContact = GetContact(contact.Email);
 
-            if (existingContact != null)
+            if (existingContact is not null)
             {
-                existingContact.FirstName = contact.FirstName;
-                existingContact.LastName = contact.LastName;
-                existingContact.Email = contact.Email;
-                existingContact.Phone = contact.Phone;
-                existingContact.Address = contact.Address;
-                existingContact.Id = contact.Id;    
+                existingContact.FirstName = contact.FirstName ?? existingContact.FirstName;
+                existingContact.LastName = contact.LastName ?? existingContact.LastName;
+                existingContact.Email = contact.Email ?? existingContact.Email;
+                existingContact.Phone = contact.Phone ?? existingContact.Phone;
+                existingContact.Address = contact.Address ?? existingContact.Address;
+                existingContact.Id = contact.Id != Guid.Empty ? contact.Id : existingContact.Id;
 
                 _writer.SaveToFile(fileName, "2", _contactList);
             }
-        } catch (Exception ex) { Debug.WriteLine(ex.Message); }
+        }
+        catch (Exception ex) { Debug.WriteLine(ex.Message); }
     }
 
     public void RemoveContact(string email)
     {
-        var contactToRemove = _contactList.First(e => e.Email == email);
-        if (contactToRemove != null)
+        try
         {
-            _contactList.Remove(contactToRemove);
+            var contactToRemove = _contactList.First(e => e.Email == email);
+            if (contactToRemove is not null)
+            {
+                _contactList.Remove(contactToRemove);
+            }
         }
+        catch (Exception ex) { Debug.WriteLine($"{ex.Message}"); }
     }
 }
