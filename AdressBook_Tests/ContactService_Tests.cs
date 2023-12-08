@@ -69,6 +69,5 @@ public class ContactService_Tests
         // Assert
         Assert.NotNull(result);
         Assert.True(((IEnumerable<Contact>)result).Any());
-
     }
 }

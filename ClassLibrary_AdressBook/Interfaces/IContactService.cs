@@ -5,7 +5,7 @@
         bool AddContact(IContact contact);
         IContact GetContact(string email);
         IEnumerable<IContact> GetContacts();
-        void RemoveContact(string email);
+        void RemoveContact(string email, string fileName);
         void UpdateContact(IContact contact, string fileName);
     }
 }

@@ -66,7 +66,7 @@ public class ContactService : IContactService
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
     }
 
-    public void RemoveContact(string email)
+    public void RemoveContact(string email, string fileName)
     {
         try
         {
@@ -74,6 +74,7 @@ public class ContactService : IContactService
             if (contactToRemove is not null)
             {
                 _contactList.Remove(contactToRemove);
+                _writer.SaveToFile(fileName, "2", _contactList);
             }
         }
         catch (Exception ex) { Debug.WriteLine($"{ex.Message}"); }

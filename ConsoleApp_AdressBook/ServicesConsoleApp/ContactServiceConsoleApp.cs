@@ -150,14 +150,18 @@ public class ContactServiceConsoleApp : IContactServiceConsoleApp
     {
         try
         {
+            string folderPath = @"C:\EC\csharp\Assignment_AdressBook\Contact_Files";
             Console.Clear();
             Console.WriteLine("### DELETE CONTACT ###");
             Console.WriteLine("E-mail of user to remove: ");
             string email = Console.ReadLine() ?? string.Empty!;
+            _showFolder.AvailableFiles(folderPath);
+            Console.WriteLine("Enter name of file where you wanna delete: ");
+            string fileName = Console.ReadLine() ?? string.Empty!.Trim();
 
             if (!string.IsNullOrEmpty(email))
             {
-                _contactService?.RemoveContact(email);
+                _contactService?.RemoveContact(email, fileName);
                 DisplayMessage.Message($"Contact with e-mail {email} removed successfully.");
             }
             else
