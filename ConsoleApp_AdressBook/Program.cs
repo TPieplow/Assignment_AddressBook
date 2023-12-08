@@ -5,6 +5,7 @@ using ClassLibrary_AdressBook.Services;
 using ConsoleApp_AdressBook.Interfaces;
 using ConsoleApp_AdressBook.ServiceConsoleApp;
 using ConsoleApp_AdressBook.ServicesConsoleApp;
+using ConsoleApp_AdressBook.UtilitiesConsoleApp;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -19,6 +20,7 @@ public class Program
 
             services.AddSingleton<IContactService, ContactService>();
             services.AddSingleton<IContactServiceConsoleApp, ContactServiceConsoleApp>();
+            services.AddSingleton<ShowFolder>();
             services.AddSingleton<IJsonReader, JsonReader>();
             services.AddSingleton<IJsonWriter, JsonWriter>();
             services.AddSingleton<MenuConsole>();
