@@ -1,4 +1,5 @@
 ﻿using ClassLibrary_AdressBook.Interfaces;
+using ClassLibrary_AdressBook.Models;
 using Newtonsoft.Json;
 using System.Diagnostics;
 
@@ -22,7 +23,6 @@ public class ContactService : IContactService
             if (!_contactList.Any(c => c.Email == contact.Email))
             {
                 _contactList.Add(contact);
-                Debug.WriteLine($"{contact.FirstName}");
                 return true;
             }
         }
@@ -42,7 +42,7 @@ public class ContactService : IContactService
 
     public IEnumerable<IContact> GetContacts()
     {
-        return _contactList;
+        return _contactList.Select(c => (Contact)c);
     }
 
     public void UpdateContact(IContact contact, string fileName)

@@ -12,15 +12,11 @@ public class JsonReader : IJsonReader
         List<IContact> loadedContacts = new List<IContact>();
         try
         {
-
             string folderPath = @"C:\EC\csharp\Assignment_AdressBook\Contact_Files";
             string filePath = Path.Combine(folderPath, fileName);
 
-            Thread.Sleep(1000);
-
             if (File.Exists(filePath))
             {
-                Console.WriteLine("File exists. Reading contents...");
                 using (StreamReader reader = new StreamReader(filePath))
                 {
                     string jsonContent = reader.ReadToEnd();
