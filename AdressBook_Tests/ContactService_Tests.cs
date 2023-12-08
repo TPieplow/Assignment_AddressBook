@@ -27,12 +27,12 @@ public class ContactService_Tests
     {
         // Arrange
         var writerMock = new Mock<IJsonWriter>();
-        var contactService = new ContactService(writerMock.Object);
-        var testContact = new Contact { Email = "test@test.se" };
+        IContactService contactService = new ContactService(writerMock.Object);
+        IContact contact = new Contact { Email = "test@test.se" };
 
         // Act
-        contactService.AddContact(testContact);
-        var result = contactService.AddContact(testContact);
+        contactService.AddContact(contact);
+        var result = contactService.AddContact(contact);
 
         // Assert
         Assert.False(result);
