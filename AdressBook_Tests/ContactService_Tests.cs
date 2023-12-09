@@ -13,7 +13,7 @@ public class ContactService_Tests
         //Arrange
         var writerMock = new Mock<IJsonWriter>();
         IContact contact = new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "ted@gmail.com", Address = "Vildsvinsvägen 23", Phone = "0763233614" };
-        IContactService contactService = new ContactService(writerMock.Object);
+        IContactService contactService = new ContactService(writerMock.Object, new List<IContact>());
 
         //Act
         bool result = contactService.AddContact(contact);
@@ -27,7 +27,7 @@ public class ContactService_Tests
     {
         // Arrange
         var writerMock = new Mock<IJsonWriter>();
-        IContactService contactService = new ContactService(writerMock.Object);
+        IContactService contactService = new ContactService(writerMock.Object, new List<IContact>());
         IContact contact = new Contact { Email = "test@test.se" };
 
         // Act
@@ -48,7 +48,7 @@ public class ContactService_Tests
 
         // Act
         IContact contact = new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "ted@gmail.com", Address = "Vildsvinsvägen 23", Phone = "0763233614" };
-        IContactService contactService = new ContactService(writerMock.Object);
+        IContactService contactService = new ContactService(writerMock.Object, new List<IContact>());
 
         // Assert
         bool result = contactService.AddContact(contact);
@@ -59,7 +59,7 @@ public class ContactService_Tests
     {
         // Arrange
         var writerMock = new Mock<IJsonWriter>();
-        IContactService contactService = new ContactService(writerMock.Object);
+        IContactService contactService = new ContactService(writerMock.Object, new List<IContact>());
         IContact contact = new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "ted@gmail.com", Address = "Vildsvinsvägen 23", Phone = "0763233614" };
         contactService.AddContact(contact);
 

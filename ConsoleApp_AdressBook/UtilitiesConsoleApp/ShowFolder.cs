@@ -4,9 +4,8 @@ public class ShowFolder
 {
     public void AvailableFiles(string folderPath)
     {
-        Console.WriteLine("### LOAD A FILE ###");
+        Console.WriteLine("### AVAILABLE FILES ###");
 
-        //string folderPath = @"C:\EC\csharp\Assignment_AdressBook\Contact_Files";
         string[] files = Directory.GetFiles(folderPath);
 
         foreach (string file in files)

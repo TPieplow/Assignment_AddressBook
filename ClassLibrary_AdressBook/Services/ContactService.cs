@@ -10,9 +10,9 @@ public class ContactService : IContactService
     public List<IContact> _contactList;
     private readonly IJsonWriter _writer;
 
-    public ContactService(IJsonWriter writer)
+    public ContactService(IJsonWriter writer, IEnumerable<IContact> contact)
     {
-        _contactList = new List<IContact>();
+        _contactList = new List<IContact>(contact);
         _writer = writer;
     }
 
