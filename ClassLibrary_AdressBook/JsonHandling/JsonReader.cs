@@ -9,7 +9,7 @@ public class JsonReader : IJsonReader
 
     public List<IContact> LoadFromFile(string fileName)
     {
-        List<IContact> loadedContacts = new List<IContact>();
+        List<IContact>? loadedContacts = null;
         try
         {
             string folderPath = @"C:\EC\csharp\Assignment_AdressBook\Contact_Files";

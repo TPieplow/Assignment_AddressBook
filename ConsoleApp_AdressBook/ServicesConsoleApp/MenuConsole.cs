@@ -12,7 +12,12 @@ public class MenuConsole
     private readonly SaveToFile _saveToFile;
     private readonly LoadFromFile _loadFromFile;
 
-    public MenuConsole(IContactServiceConsoleApp contactsConsoleApp, IEnumerable<IContact> contacts, IJsonReader jsonReader, IJsonWriter jsonWriter, IContactService contactService, DeleteFileConsoleApp deleteFileConsoleApp)
+    public MenuConsole(IContactServiceConsoleApp contactsConsoleApp,
+        IEnumerable<IContact> contacts,
+        IJsonReader jsonReader,
+        IJsonWriter jsonWriter,
+        IContactService contactService,
+        DeleteFileConsoleApp deleteFileConsoleApp)
     {
         _contactsConsoleApp = contactsConsoleApp;
         _saveToFile = new SaveToFile(contacts, jsonWriter);

@@ -1,5 +1,6 @@
 ﻿using ClassLibrary_AdressBook.Interfaces;
 using ClassLibrary_AdressBook.JsonHandling;
+using ConsoleApp_AdressBook.ServiceConsoleApp;
 
 namespace ConsoleApp_AdressBook.ServicesConsoleApp.JsonHandling;
 
@@ -31,10 +32,11 @@ public class SaveToFile
             if (!string.IsNullOrEmpty(textChoice))
             {
                 _writer?.SaveToFile(fileName, textChoice, contacts);
+                DisplayMessage.Message("File successfully saved.");
             }
             else
             {
-                Console.WriteLine("Error while processing list.");
+                DisplayMessage.Message("Error while processing list.");
             }
         }
         catch (Exception ex) { Console.WriteLine($"{ex.Message}"); }

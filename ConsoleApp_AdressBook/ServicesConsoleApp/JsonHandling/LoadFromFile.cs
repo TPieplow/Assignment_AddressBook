@@ -38,9 +38,9 @@ public class LoadFromFile
 
             List<IContact> loadedContacts = _reader.LoadFromFile(fileName);
 
-            if (loadedContacts != null)
+            if (loadedContacts is not null)
             {
-                foreach (var contact in loadedContacts)
+                foreach (IContact contact in loadedContacts)
                 {
                     Console.WriteLine($"Loaded contacts: {contact.FirstName}");
                     _contactService?.AddContact(contact);
