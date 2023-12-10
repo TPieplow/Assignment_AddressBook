@@ -3,6 +3,8 @@ using ClassLibrary_AdressBook.Models;
 using ClassLibrary_AdressBook.Services;
 using Moq;
 using System.Diagnostics;
+using System.Net;
+using System.Numerics;
 
 namespace AdressBook_Tests;
 
@@ -99,7 +101,6 @@ public class ContactService_Tests
 
         // Assert
         Assert.Null(result);
-
     }
 
     [Fact]
@@ -140,4 +141,21 @@ public class ContactService_Tests
         Assert.Equal("Updated", result.FirstName);
     }
 
+    [Fact]
+    public void RemoveContact_Should_RemoveContact_UsingEmail()
+    {
+        // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        IContactService contactService = new ContactService(writerMock.Object, new List<IContact>());
+        IContact contact = new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "test@test.com", Address = "Vildsvinsvägen 23", Phone = "0763233614" };
+        contactService.AddContact(contact);
+
+        // Act
+        contactService.RemoveContact("test@test.com", "whateverfilename");
+
+        // Assert
+        IContact result = contactService.GetContact("test@test.com");
+
+        Assert.Null(result);
+    }
 }
