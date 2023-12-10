@@ -20,13 +20,21 @@ public class ContactService : IContactService
     {
         try
         {
+            if (contact is null)
+            {
+                throw new ArgumentNullException(nameof(contact), "Contact cannot be null");
+            }
             if (!_contactList.Any(c => c.Email == contact.Email))
             {
                 _contactList.Add(contact);
                 return true;
             }
         }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
+        catch (ArgumentNullException ex)
+        {
+            Debug.WriteLine(ex.Message);
+            throw;
+        }
         return false;
     }
 
