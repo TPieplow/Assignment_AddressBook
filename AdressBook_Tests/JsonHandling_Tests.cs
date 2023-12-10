@@ -1,6 +1,5 @@
 ﻿using ClassLibrary_AdressBook.Interfaces;
 using ClassLibrary_AdressBook.Models;
-using ClassLibrary_AdressBook.Services;
 using Moq;
 
 namespace AdressBook_Tests;
@@ -30,9 +29,17 @@ public class JsonHandling_Tests
     public void JsonWriter_Should_WriteAFile_ToFolder()
     {
         // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        List<IContact> savedContacts = new List<IContact>()
+        {
+            new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "ted.pieplow@gmail.com"}
+        };
+        writerMock.Setup(w => w.SaveToFile(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<IContact>>()));
 
         // Act
+        writerMock.Object.SaveToFile("testfile.json", "2", savedContacts);
 
         // Assert
+        writerMock.Verify(w => w.SaveToFile("testfile.json", "2", savedContacts), Times.Once);
     }
 }

@@ -2,6 +2,7 @@
 using ClassLibrary_AdressBook.Models;
 using ClassLibrary_AdressBook.Services;
 using Moq;
+using System.Diagnostics;
 
 namespace AdressBook_Tests;
 
@@ -52,6 +53,53 @@ public class ContactService_Tests
 
         // Assert
         bool result = contactService.AddContact(contact);
+    }
+
+    [Fact]
+    public void GetContact_Should_Return_SpecificContact_UsingEmail()
+    {
+        // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        var expectedContact = new Mock<IContact>();
+        expectedContact.SetupGet(c => c.Email).Returns("test@test.com");
+
+        var contactService = new ContactService(writerMock.Object, new List<IContact> { expectedContact.Object });
+
+        // Act
+        var result = contactService.GetContact("test@test.com");
+        
+        // Assert
+        Assert.Equal(expectedContact.Object, result);
+    }
+
+    [Fact]
+    public void GetContact_Should_ReturnNull_WhenContactNotFound()
+    {
+        // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        var contactService = new ContactService(writerMock.Object, new List<IContact>());
+
+        // Act
+        var result = contactService.GetContact("thismaildoesntexist@test.com");
+
+        // Assert
+        Assert.Null(result);
+    }
+
+    [Fact]
+    public void GetContact_Should_HandleExeption_AndReturnNull()
+    {
+        // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+
+        var contactService = new ContactService(writerMock.Object, new List<IContact>());
+
+        // Act
+        var result = contactService.GetContact("test@test.com");
+
+        // Assert
+        Assert.Null(result);
+
     }
 
     [Fact]
