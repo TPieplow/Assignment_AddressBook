@@ -67,7 +67,7 @@ public class ContactService_Tests
 
         // Act
         var result = contactService.GetContact("test@test.com");
-        
+
         // Assert
         Assert.Equal(expectedContact.Object, result);
     }
@@ -118,4 +118,26 @@ public class ContactService_Tests
         Assert.NotNull(result);
         Assert.True(((IEnumerable<Contact>)result).Any());
     }
+
+    [Fact]
+    public void UpdateContact_Should_UpdateCurrentContact()
+    {
+        // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        IContactService contactService = new ContactService(writerMock.Object, new List<IContact>());
+        IContact initialContact = new Contact { FirstName = "Initial", LastName = "Last name", Email = "test@test.com" };
+        contactService.AddContact(initialContact);
+
+        IContact updatedContact = new Contact { FirstName = "Updated", LastName = "Last name", Email = "test@test.com" };
+
+        // Act
+        contactService.UpdateContact(updatedContact, "whateverfilename");
+
+        // Assert
+        IContact result = contactService.GetContact("test@test.com");
+
+        Assert.NotNull(result);
+        Assert.Equal("Updated", result.FirstName);
+    }
+
 }
