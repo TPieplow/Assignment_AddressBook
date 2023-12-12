@@ -1,16 +1,17 @@
 ﻿using ClassLibrary_AdressBook.Interfaces;
-using ClassLibrary_AdressBook.JsonHandling;
 using ConsoleApp_AdressBook.ServiceConsoleApp;
 
 namespace ConsoleApp_AdressBook.ServicesConsoleApp.JsonHandling;
 
 public class SaveToFile
 {
-    private readonly IEnumerable<IContact> _contacts;
+    private IContactService _contactService;
+    private IEnumerable<IContact> _contacts;
     private readonly IJsonWriter _writer;
 
-    public SaveToFile(IEnumerable<IContact> contacts, IJsonWriter writer)
+    public SaveToFile(IContactService contactService, IEnumerable<IContact> contacts, IJsonWriter writer)
     {
+        _contactService = contactService;
         _contacts = contacts;
         _writer = writer;
     }
@@ -19,15 +20,15 @@ public class SaveToFile
     {
         try
         {
-            List<IContact> contacts = _contacts.ToList();
+            List<IContact> contacts = _contactService.GetContacts().ToList();
             Console.Write("Name the file: ");
-            string fileName = Console.ReadLine() ?? string.Empty!;
+            string fileName = Console.ReadLine()!;
 
             Console.WriteLine("What file do you want to create? ");
             Console.WriteLine("[1]. .txt-file");
             Console.WriteLine("[2]. .json-file");
 
-            string textChoice = Console.ReadLine() ?? string.Empty!;
+            string textChoice = Console.ReadLine()!;
 
             if (!string.IsNullOrEmpty(textChoice))
             {

@@ -20,7 +20,7 @@ public class MenuConsole
         DeleteFileConsoleApp deleteFileConsoleApp)
     {
         _contactsConsoleApp = contactsConsoleApp;
-        _saveToFile = new SaveToFile(contacts, jsonWriter);
+        _saveToFile = new SaveToFile(contactService, contacts, jsonWriter);
         _loadFromFile = new LoadFromFile(jsonReader, contactService);
         _deleteFileConsoleApp = deleteFileConsoleApp;
     }

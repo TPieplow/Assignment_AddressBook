@@ -4,9 +4,52 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Assignment_AdressBook"
+        
+        xmlns:viewmodels="clr-namespace:Assignment_AdressBook.ViewModels"
+        xmlns:views="clr-namespace:Assignment_AdressBook.Views"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+        
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="500" Width="400">
 
+    <Grid>
+        
+        <ContentControl Content="{Binding CurrentViewModel}">
+            <ContentControl.Resources>
+
+                <DataTemplate DataType="{x:Type viewmodels:LoadFileViewModel}">
+                    <views:LoadFileView />
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewmodels:MenuViewModel}">
+                    <views:MenuView />
+                </DataTemplate>
+                
+                <DataTemplate DataType="{x:Type viewmodels:AddContactViewModel}">
+                    <views:AddContactView />
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewmodels:GetContactsViewModel}">
+                    <views:GetContactsView />
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewmodels:GetContactViewModel}">
+                    <views:GetContactView />
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewmodels:UpdateContactViewModel}">
+                    <views:UpdateContactView />
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewmodels:CreateFileViewModel}">
+                    <views:UpdateContactView />
+                </DataTemplate>
+
+
+            </ContentControl.Resources>
+        </ContentControl>
+
+
+    
     </Grid>
 </Window>

@@ -2,6 +2,7 @@
 using ClassLibrary_AdressBook.FolderHandler;
 using ClassLibrary_AdressBook.Interfaces;
 using ClassLibrary_AdressBook.JsonHandling;
+using ClassLibrary_AdressBook.Models;
 using ClassLibrary_AdressBook.Services;
 using ConsoleApp_AdressBook.FolderHandler;
 using ConsoleApp_AdressBook.Interfaces;

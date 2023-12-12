@@ -145,9 +145,9 @@ public class ContactService_Tests
 
         // Act
         contactService.RemoveContact("test@test.com", "whateverfilename");
+        IContact result = contactService.GetContact("test@test.com");
 
         // Assert
-        IContact result = contactService.GetContact("test@test.com");
         Assert.Null(result);
     }
 

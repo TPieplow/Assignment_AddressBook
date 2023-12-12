@@ -1,18 +1,17 @@
 ﻿using ClassLibrary_AdressBook.Interfaces;
 using ClassLibrary_AdressBook.Models;
-using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace ClassLibrary_AdressBook.Services;
 
 public class ContactService : IContactService
 {
-    public List<IContact> _contactList;
+    private List<IContact> _contactList;
     private readonly IJsonWriter _writer;
 
-    public ContactService(IJsonWriter writer, IEnumerable<IContact> contact)
+    public ContactService(IJsonWriter writer)
     {
-        _contactList = new List<IContact>(contact);
+        _contactList = new List<IContact>();
         _writer = writer;
     }
 
@@ -20,17 +19,14 @@ public class ContactService : IContactService
     {
         try
         {
-            if (contact is null)
-            {
-                throw new ArgumentNullException(nameof(contact), "Contact cannot be null");
-            }
             if (!_contactList.Any(c => c.Email == contact.Email))
             {
                 _contactList.Add(contact);
+                Console.WriteLine($"Contact added successfully. Total contacts: {_contactList.Count}");
                 return true;
             }
         }
-        catch (ArgumentNullException ex)
+        catch (Exception ex)
         {
             Debug.WriteLine(ex.Message);
             throw;

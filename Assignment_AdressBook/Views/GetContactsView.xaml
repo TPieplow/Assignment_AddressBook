@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Assignment_AdressBook.Views.GetContactsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Assignment_AdressBook.Views"
+             xmlns:viewmodels="clr-namespace:Assignment_AdressBook.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:GetContactsViewModel}"
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+  
+    <Grid>
+        <Label Content="All Contacts" />
+        <DataGrid ItemsSource="{Binding ContactList}" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" Width="*"/>
+                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" Width="*"/>
+                <DataGridTextColumn Header="E-mail" Binding="{Binding Email}" Width="*"/>
+                <DataGridTextColumn Header="Phone" Binding="{Binding Phone}" Width="*"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="*"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="X" Command="{Binding DataContext.RemoveContactCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                    CommandParameter="{Binding Email}" Foreground="Red" HorizontalAlignment="Center" >
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <Ellipse Fill="Red" />
+                                            <TextBlock Text="X" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="7"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Back to main menu" Command="{Binding BackToMenuCommand}" Height="25" Width="150"/>
+    </Grid>
+</UserControl>
