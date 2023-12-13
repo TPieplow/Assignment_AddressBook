@@ -20,6 +20,7 @@ public partial class App : Application
             {
                 services.AddSingleton<IContactService, ContactService>();
                 services.AddSingleton<IContact, Contact>();
+                services.AddSingleton<List<IContact>>();
                 services.AddSingleton<IJsonWriter, JsonWriter>();
                 services.AddSingleton<IJsonReader, JsonReader>();
                 services.AddSingleton<CreateFileViewModel>();

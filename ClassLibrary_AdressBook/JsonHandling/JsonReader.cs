@@ -34,7 +34,7 @@ public class JsonReader : IJsonReader
             Debug.WriteLine(ex.Message);
         }
 
-        return loadedContacts;
+        return loadedContacts ?? new List<IContact>();
     }
 }
 

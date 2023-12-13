@@ -9,7 +9,7 @@ public class ContactService : IContactService
     private List<IContact> _contactList;
     private readonly IJsonWriter _writer;
 
-    public ContactService(IJsonWriter writer)
+    public ContactService(IJsonWriter writer, List<IContact> contactList)
     {
         _contactList = new List<IContact>();
         _writer = writer;

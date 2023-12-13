@@ -1,1 +1,0 @@
-{"$type":"System.Collections.Generic.List`1[[ClassLibrary_AdressBook.Interfaces.IContact, ClassLibrary_AdressBook]], System.Private.CoreLib","$values":[{"$type":"ClassLibrary_AdressBook.Models.Contact, ClassLibrary_AdressBook","Id":"fab30580-80d8-48e6-9696-40ed8b2271d2","FirstName":null,"LastName":null,"Email":null,"Phone":null,"Address":null}]}

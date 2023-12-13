@@ -10,11 +10,11 @@ namespace Assignment_AdressBook.ViewModels;
 
 public partial class LoadFileViewModel : ObservableObject
 {
-    private IJsonReader _reader;
     [ObservableProperty]
     private string[] _loadedFiles;
     [ObservableProperty]
     private string _selectedFile;
+    private IJsonReader _reader;
     private readonly IServiceProvider _serviceProvider;
 
 
@@ -28,10 +28,16 @@ public partial class LoadFileViewModel : ObservableObject
     [RelayCommand]
     public void LoadSelectedFile()
     {
-
-            string fileName = Path.GetFileName(_selectedFile);
+        if (!string.IsNullOrEmpty(SelectedFile))
+        {
+            string fileName = Path.GetFileName(SelectedFile);
             _reader.LoadFromFile(fileName);
             MessageBox.Show($"File '{fileName}' successfully loaded.");
+        }
+        else
+        {
+            MessageBox.Show("File not loaded, please select a file before loading.");
+        }
 
     }
 

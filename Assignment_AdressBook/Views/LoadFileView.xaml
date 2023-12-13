@@ -13,7 +13,7 @@
     <Grid>
         <StackPanel>
             <Label Content="Available Files"/>
-            <ListBox ItemsSource="{Binding LoadedFiles}">
+            <ListBox ItemsSource="{Binding LoadedFiles}" SelectedItem="{Binding SelectedFile, Mode=TwoWay}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -23,6 +23,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            <Button Content="Back to menu" Command="{Binding BackToMenuCommand}" Margin="20,5,20,2" />
         </StackPanel>
     </Grid>
 </UserControl>

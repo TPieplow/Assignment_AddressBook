@@ -19,8 +19,13 @@ public partial class GetContactsViewModel : ObservableObject
     public GetContactsViewModel(IContactService contactService, IServiceProvider serviceProvider)
     {
         _contactService = contactService;
-        ContactList = _contactService.GetContacts();
         _serviceProvider = serviceProvider;
+    }
+
+    [RelayCommand]
+    public void LoadContacts()
+    {
+        ContactList = _contactService.GetContacts();
     }
 
     [RelayCommand]
