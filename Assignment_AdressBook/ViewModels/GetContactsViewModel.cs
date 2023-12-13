@@ -4,7 +4,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows;
 
 namespace Assignment_AdressBook.ViewModels;
@@ -60,7 +59,6 @@ public partial class GetContactsViewModel : ObservableObject
         mainViewModel.CurrentViewModel = _serviceProvider.GetRequiredService<UpdateContactViewModel>();
     }
 
-
     /// <summary>
     /// Method for removing a contact from the list/file. 
     /// Takes email as a parameter since its the identifier 
@@ -77,6 +75,10 @@ public partial class GetContactsViewModel : ObservableObject
         }
     }
 
+    /// <summary>
+    /// Navigation method that allows the user to return to the main page.
+    /// Essential for managing user navigation.
+    /// </summary>
     [RelayCommand]
     public void BackToMenu()
     {
