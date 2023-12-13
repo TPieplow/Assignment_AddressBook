@@ -28,7 +28,6 @@ public partial class App : Application
                 services.AddSingleton<MenuViewModel>();
                 services.AddSingleton<AddContactView>();
                 services.AddSingleton<AddContactViewModel>();
-                services.AddSingleton<GetContactViewModel>();
                 services.AddSingleton<GetContactsViewModel>();
                 services.AddSingleton<GetContactsView>();
                 services.AddSingleton<UpdateContactViewModel>();

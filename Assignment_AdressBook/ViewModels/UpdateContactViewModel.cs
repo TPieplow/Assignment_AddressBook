@@ -20,6 +20,11 @@ public partial class UpdateContactViewModel : ObservableObject
         _contact = contact;
     }
 
+
+    /// <summary>
+    /// Method responsible of calling the right contact to update.
+    /// </summary>
+    /// <param name="email">Taking email as a parameter to find the right contact to update.</param>
     [RelayCommand]
     public void EditContact(string email)
     {
@@ -40,6 +45,10 @@ public partial class UpdateContactViewModel : ObservableObject
         }
     }
 
+    /// <summary>
+    /// Method for calling the UpdateContact method. 
+    /// </summary>
+    /// <param name="contact">Takes a contact to update</param>
     [RelayCommand]
     public void SaveAndUpdate(IContact contact)
     {
@@ -60,6 +69,10 @@ public partial class UpdateContactViewModel : ObservableObject
         }
     }
 
+    /// <summary>
+    /// Navigation method that allows the user to return to the main page.
+    /// Essential for managing user navigation.
+    /// </summary>
     [RelayCommand]
     public void BackToMenu()
     {

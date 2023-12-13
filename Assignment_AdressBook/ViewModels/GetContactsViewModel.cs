@@ -17,11 +17,20 @@ public partial class GetContactsViewModel : ObservableObject
     private UpdateContactViewModel _updateContactViewModel;
 
     private readonly IServiceProvider _serviceProvider;
+
+    /// <summary>
+    /// Constructor for GetContacsViewModel
+    /// Initializes the view model with everything it needs. 
+    /// </summary>
+    /// <param name="contactService">Manage the methods regarding contacts</param>
+    /// <param name="serviceProvider">Service provider for dependency injection</param>
+    /// <param name="updateContactViewModel">Viewmodel taking care of updating contacts</param>
     public GetContactsViewModel(IContactService contactService, IServiceProvider serviceProvider, UpdateContactViewModel updateContactViewModel)
     {
         _contactService = contactService;
         _serviceProvider = serviceProvider;
         _updateContactViewModel = updateContactViewModel;
+        // If available, subscribe to the ContactAdded event in the AddContactViewModel
         if (_serviceProvider.GetRequiredService<AddContactViewModel>() is AddContactViewModel addContactViewModel)
         {
             addContactViewModel.ContactAdded += AddContactViewModel_ContactAdded!;
@@ -29,11 +38,20 @@ public partial class GetContactsViewModel : ObservableObject
         ContactList = new ObservableCollection<IContact>(_contactService.GetContacts());
     }
 
+    /// <summary>
+    /// Handles ContactAdded event by adding the new contact to the ContactList 
+    /// </summary>
+    /// <param name="sender">The event sender</param>
+    /// <param name="e">ContactAdded event containing the added contact</param>
     private void AddContactViewModel_ContactAdded(object sender, ContactAddedEventArgs e)
     {
         ContactList!.Add(e.AddedContact);
     }
 
+    /// <summary>
+    /// Lets the user navigate to UpdateContact, taking string email as a parameter since we are using email to search for the chosen contact.
+    /// </summary>
+    /// <param name="email">The email of the contact to update</param>
     [RelayCommand]
     public void NavigateToEditContact(string email)
     {
@@ -42,6 +60,12 @@ public partial class GetContactsViewModel : ObservableObject
         mainViewModel.CurrentViewModel = _serviceProvider.GetRequiredService<UpdateContactViewModel>();
     }
 
+
+    /// <summary>
+    /// Method for removing a contact from the list/file. 
+    /// Takes email as a parameter since its the identifier 
+    /// </summary>
+    /// <param name="email">The email of the contact to be removed</param>
     [RelayCommand]
     public void RemoveContact(string email)
     {

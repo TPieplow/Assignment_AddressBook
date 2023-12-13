@@ -58,8 +58,6 @@ C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-window
 C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-windows\Views\MenuView.baml
 C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-windows\Views\GetContactsView.g.cs
-C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-windows\Views\GetContactView.g.cs
 C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-windows\Views\UpdateContactView.g.cs
 C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-windows\Views\GetContactsView.baml
-C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-windows\Views\GetContactView.baml
 C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-windows\Views\UpdateContactView.baml

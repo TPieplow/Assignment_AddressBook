@@ -29,13 +29,6 @@ public partial class MenuViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void NavigateToGetContact()
-    {
-        var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
-        mainViewModel.CurrentViewModel = _serviceProvider.GetRequiredService<GetContactViewModel>();
-    }
-
-    [RelayCommand]
     public void NavigateToUpdateContact()
     {
         var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
