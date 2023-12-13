@@ -13,12 +13,6 @@ public partial class MenuViewModel : ObservableObject
         _serviceProvider = serviceProvider;
     }
 
-    [RelayCommand]
-    public void NavigateToCreateFile()
-    {
-        var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
-        mainViewModel.CurrentViewModel = _serviceProvider.GetRequiredService<CreateFileViewModel>();
-    }
 
     [RelayCommand]
     public void NavigateToAddContact()

@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\AddContactImage.png" />
+    <None Remove="Images\Bok.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -16,6 +21,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary_AdressBook\ClassLibrary_AdressBook.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\AddContactImage.png" />
+    <Resource Include="Images\Bok.png" />
   </ItemGroup>
 
 </Project>

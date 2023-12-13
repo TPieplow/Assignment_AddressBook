@@ -48,9 +48,8 @@ public partial class GetContactsViewModel : ObservableObject
         if (email != null)
         {
             _contactService.RemoveContact(email);
-            ContactList?.Remove(ContactList.FirstOrDefault(c => c.Email == email));
+            ContactList?.Remove(ContactList.FirstOrDefault(c => c.Email == email)!);
             MessageBox.Show("Contact removed");
-            BackToMenu();
         }
     }
 

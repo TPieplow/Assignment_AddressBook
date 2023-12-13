@@ -37,11 +37,6 @@
                     <views:UpdateContactView />
                 </DataTemplate>
 
-                <DataTemplate DataType="{x:Type viewmodels:CreateFileViewModel}">
-                    <views:UpdateContactView />
-                </DataTemplate>
-
-
             </ContentControl.Resources>
         </ContentControl>
 

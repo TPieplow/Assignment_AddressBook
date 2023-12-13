@@ -23,7 +23,6 @@ public partial class App : Application
                 services.AddSingleton<List<IContact>>();
                 services.AddSingleton<IJsonWriter, JsonWriter>();
                 services.AddSingleton<IJsonReader, JsonReader>();
-                services.AddSingleton<CreateFileViewModel>();
                 services.AddSingleton<MainWindow>();
                 services.AddSingleton<MainViewModel>();
                 services.AddSingleton<MenuViewModel>();
