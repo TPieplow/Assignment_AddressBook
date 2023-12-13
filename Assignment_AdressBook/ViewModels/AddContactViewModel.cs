@@ -10,8 +10,15 @@ namespace Assignment_AdressBook.ViewModels;
 
 public partial class AddContactViewModel : ObservableObject
 {
+    /// <summary>
+    /// EventHandler signaling added contacts, triggers a UI render.
+    /// </summary>
     public event EventHandler<ContactAddedEventArgs> ContactAdded;
 
+    /// <summary>
+    /// Invokes the ContactAdded event to signal to all subscribers that a new contact were added to the list,this triggers a render/update in the UI.
+    /// </summary>
+    /// <param name="contact"></param>
     private void OnContactAdded(IContact contact)
     {
         ContactAdded?.Invoke(this, new ContactAddedEventArgs(contact));
@@ -32,6 +39,10 @@ public partial class AddContactViewModel : ObservableObject
         Contacts = new ObservableCollection<IContact>(_contactService.GetContacts());
     }
 
+    /// <summary>
+    /// Saves the new contact in NewContact when calling AddContact(ClassLibrary).
+    /// Using OnContactAdded to trigger the list rendering.
+    /// </summary>
     [RelayCommand]
     private void AddContact()
     {
@@ -66,6 +77,10 @@ public partial class AddContactViewModel : ObservableObject
         }
     }
 
+    /// <summary>
+    /// Navigation method that allows the user to return to the main page.
+    /// Essential for managing user navigation.
+    /// </summary>
     [RelayCommand]
     public void BackToMenu()
     {
