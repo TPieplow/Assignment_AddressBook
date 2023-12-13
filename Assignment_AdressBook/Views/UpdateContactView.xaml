@@ -9,10 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-
-
-
-    <Grid Background="White">
+    <Grid  Background="#FFF5E1">
         <StackPanel>
             <Label Content="Add A New Contact" HorizontalAlignment="Center" Foreground="white"></Label>
             <Label Content="First name" Margin="20,0,20,0" FontSize="8"></Label>
@@ -26,8 +23,8 @@
             <Label Content="First name" Margin="20,0,20,0" FontSize="8"></Label>
             <TextBox Text="{Binding Contact.Address}" Margin="20,0,20,0" />
 
-            <Button Content="Save" Command="{Binding SaveAndUpdateCommand}" CommandParameter="{Binding Contact}" Margin="20,20,20,2" />
-            <Button Content="Back to menu" Command="{Binding BackToMenuCommand}" Margin="20,5,20,2" />
+            <Button Content="Save" Command="{Binding SaveAndUpdateCommand}" CommandParameter="{Binding Contact}" Margin="20,20,20,2" Background="#3498DD"/>
+            <Button Content="Back to menu" Command="{Binding BackToMenuCommand}" Margin="20,5,20,2" Background="#3498DD"/>
         </StackPanel>
     </Grid>
 </UserControl>
