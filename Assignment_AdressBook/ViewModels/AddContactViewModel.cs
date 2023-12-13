@@ -3,12 +3,22 @@ using ClassLibrary_AdressBook.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace Assignment_AdressBook.ViewModels;
 
 public partial class AddContactViewModel : ObservableObject
 {
+    public event EventHandler<ContactAddedEventArgs> ContactAdded;
+
+    private void OnContactAdded(IContact contact)
+    {
+        ContactAdded?.Invoke(this, new ContactAddedEventArgs(contact));
+    }
+
+    [ObservableProperty]
+    private ObservableCollection<IContact> _contacts;
     [ObservableProperty]
     private IContact newContact;
     private IContactService? _contactService;
@@ -19,6 +29,7 @@ public partial class AddContactViewModel : ObservableObject
         _contactService = contactService;
         _serviceProvider = serviceProvider;
         newContact = new Contact();
+        Contacts = new ObservableCollection<IContact>(_contactService.GetContacts());
     }
 
     [RelayCommand]
@@ -33,6 +44,8 @@ public partial class AddContactViewModel : ObservableObject
                     bool contactAdded = _contactService!.AddContact(NewContact!);
                     if (contactAdded)
                     {
+                        Contacts.Add(NewContact);
+                        OnContactAdded(NewContact);
                         NewContact = new Contact();
                         MessageBox.Show("Contact added successfully.");
                     }

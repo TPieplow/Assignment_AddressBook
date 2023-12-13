@@ -3,6 +3,7 @@ using ClassLibrary_AdressBook.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows;
 
@@ -10,10 +11,9 @@ namespace Assignment_AdressBook.ViewModels;
 
 public partial class GetContactsViewModel : ObservableObject
 {
-
-    private IContactService _contactService;
     [ObservableProperty]
-    private IEnumerable<IContact>? _contactList;
+    private ObservableCollection<IContact>? _contactList;
+    private IContactService _contactService;
     private UpdateContactViewModel _updateContactViewModel;
 
     private readonly IServiceProvider _serviceProvider;
@@ -22,7 +22,16 @@ public partial class GetContactsViewModel : ObservableObject
         _contactService = contactService;
         _serviceProvider = serviceProvider;
         _updateContactViewModel = updateContactViewModel;
-        ContactList = _contactService.GetContacts();
+        if (_serviceProvider.GetRequiredService<AddContactViewModel>() is AddContactViewModel addContactViewModel)
+        {
+            addContactViewModel.ContactAdded += AddContactViewModel_ContactAdded!;
+        }
+        ContactList = new ObservableCollection<IContact>(_contactService.GetContacts());
+    }
+
+    private void AddContactViewModel_ContactAdded(object sender, ContactAddedEventArgs e)
+    {
+        ContactList!.Add(e.AddedContact);
     }
 
     [RelayCommand]
@@ -39,6 +48,7 @@ public partial class GetContactsViewModel : ObservableObject
         if (email != null)
         {
             _contactService.RemoveContact(email);
+            ContactList?.Remove(ContactList.FirstOrDefault(c => c.Email == email));
             MessageBox.Show("Contact removed");
             BackToMenu();
         }
