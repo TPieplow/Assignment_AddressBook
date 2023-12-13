@@ -7,13 +7,13 @@ namespace ClassLibrary_AdressBook.JsonHandling;
 public class JsonReader : IJsonReader
 {
 
-    public List<IContact> LoadFromFile(string fileName)
+    public List<IContact> LoadFromFile()
     {
         List<IContact>? loadedContacts = null;
         try
         {
-            string folderPath = @"C:\EC\csharp\Assignment_AdressBook\Contact_Files";
-            string filePath = Path.Combine(folderPath, fileName);
+            string fileName = "TheFile.json";
+            string filePath = Path.Combine(@"C:\EC\csharp\Assignment_AdressBook\Contact_Files", fileName);
 
             if (File.Exists(filePath))
             {

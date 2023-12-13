@@ -17,10 +17,6 @@
         <ContentControl Content="{Binding CurrentViewModel}">
             <ContentControl.Resources>
 
-                <DataTemplate DataType="{x:Type viewmodels:LoadFileViewModel}">
-                    <views:LoadFileView />
-                </DataTemplate>
-
                 <DataTemplate DataType="{x:Type viewmodels:MenuViewModel}">
                     <views:MenuView />
                 </DataTemplate>

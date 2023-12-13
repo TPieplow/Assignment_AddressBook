@@ -24,19 +24,8 @@ public class LoadFromFile
         try
         {
             Console.Clear();
-            Console.WriteLine("### LOAD A FILE ###");
-            string folderPath = @"C:\EC\csharp\Assignment_AdressBook\Contact_Files";
-            _showFolder?.AvailableFiles(folderPath);
-
-            string[] files = Directory.GetFiles(folderPath);
-
-            Console.Write("Select a file to load into memory: ");
-            string fileName = Console.ReadLine() ?? string.Empty!;
-            string filePath = Path.Combine(folderPath, fileName);
-
-            Console.WriteLine(filePath);
-
-            List<IContact> loadedContacts = _reader.LoadFromFile(fileName);
+ 
+            List<IContact> loadedContacts = _reader.LoadFromFile();
 
             if (loadedContacts is not null)
             {

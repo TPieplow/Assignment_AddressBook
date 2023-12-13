@@ -24,15 +24,9 @@ public class SaveToFile
             Console.Write("Name the file: ");
             string fileName = Console.ReadLine()!;
 
-            Console.WriteLine("What file do you want to create? ");
-            Console.WriteLine("[1]. .txt-file");
-            Console.WriteLine("[2]. .json-file");
-
-            string textChoice = Console.ReadLine()!;
-
-            if (!string.IsNullOrEmpty(textChoice))
+            if (!string.IsNullOrEmpty(fileName))
             {
-                _writer?.SaveToFile(fileName, textChoice, contacts);
+                _writer?.SaveToFile(contacts);
                 DisplayMessage.Message("File successfully saved.");
             }
             else

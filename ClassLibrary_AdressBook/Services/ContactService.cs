@@ -1,5 +1,6 @@
 ﻿using ClassLibrary_AdressBook.Interfaces;
 using ClassLibrary_AdressBook.Models;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace ClassLibrary_AdressBook.Services;
@@ -8,20 +9,39 @@ public class ContactService : IContactService
 {
     private List<IContact> _contactList;
     private readonly IJsonWriter _writer;
+    private readonly IJsonReader _reader;
+    
 
-    public ContactService(IJsonWriter writer, List<IContact> contactList)
+    public ContactService(IJsonWriter writer, IJsonReader reader)
     {
         _contactList = new List<IContact>();
         _writer = writer;
+        _reader = reader;
+    }
+
+    public void LoadContactsAtStart()
+    {
+        try
+        {
+            List<IContact> loadedContacts = _reader.LoadFromFile();
+            _contactList?.Clear();
+            _contactList.AddRange(loadedContacts);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
     }
 
     public bool AddContact(IContact contact)
     {
         try
         {
-            if (!_contactList.Any(c => c.Email == contact.Email))
+            if (!_contactList.Any(c => c.Email.ToLower() == contact.Email.ToLower()))
             {
                 _contactList.Add(contact);
+                _writer.SaveToFile(_contactList);
+
                 Console.WriteLine($"Contact added successfully. Total contacts: {_contactList.Count}");
                 return true;
             }
@@ -38,7 +58,7 @@ public class ContactService : IContactService
     {
         try
         {
-            return _contactList.FirstOrDefault(c => c.Email == email)!;
+            return _contactList.FirstOrDefault(c => c.Email.ToLower() == email.ToLower())!;
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
         return null;
@@ -49,7 +69,7 @@ public class ContactService : IContactService
         return _contactList.Select(c => (Contact)c);
     }
 
-    public void UpdateContact(IContact contact, string fileName)
+    public bool UpdateContact(IContact contact)
     {
         try
         {
@@ -64,13 +84,18 @@ public class ContactService : IContactService
                 existingContact.Address = contact.Address ?? existingContact.Address;
                 existingContact.Id = contact.Id != Guid.Empty ? contact.Id : existingContact.Id;
 
-                _writer.SaveToFile(fileName, "2", _contactList);
+                _writer.SaveToFile(_contactList);
+                return true;
             }
         }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
+        catch (Exception ex) 
+        {
+            Debug.WriteLine(ex.Message);
+        }
+        return false;
     }
 
-    public void RemoveContact(string email, string fileName)
+    public void RemoveContact(string email)
     {
         try
         {
@@ -78,7 +103,7 @@ public class ContactService : IContactService
             if (contactToRemove is not null)
             {
                 _contactList.Remove(contactToRemove);
-                _writer.SaveToFile(fileName, "2", _contactList);
+                _writer.SaveToFile(_contactList);
             }
         }
         catch (Exception ex) { Debug.WriteLine($"{ex.Message}"); }

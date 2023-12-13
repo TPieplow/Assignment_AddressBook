@@ -9,10 +9,9 @@ namespace Assignment_AdressBook.ViewModels;
 
 public partial class AddContactViewModel : ObservableObject
 {
-    private IContactService? _contactService;
-
     [ObservableProperty]
     private IContact newContact;
+    private IContactService? _contactService;
     private readonly IServiceProvider _serviceProvider;
 
     public AddContactViewModel(IContactService contactService, IServiceProvider serviceProvider)

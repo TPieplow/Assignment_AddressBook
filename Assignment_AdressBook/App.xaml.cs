@@ -24,7 +24,6 @@ public partial class App : Application
                 services.AddSingleton<IJsonWriter, JsonWriter>();
                 services.AddSingleton<IJsonReader, JsonReader>();
                 services.AddSingleton<CreateFileViewModel>();
-                services.AddSingleton<LoadFileViewModel>();
                 services.AddSingleton<MainWindow>();
                 services.AddSingleton<MainViewModel>();
                 services.AddSingleton<MenuViewModel>();
@@ -34,7 +33,7 @@ public partial class App : Application
                 services.AddSingleton<GetContactsViewModel>();
                 services.AddSingleton<GetContactsView>();
                 services.AddSingleton<UpdateContactViewModel>();
-
+                services.AddSingleton<UpdateContactView>();
             })
             .Build();
     }
@@ -45,5 +44,8 @@ public partial class App : Application
 
         var mainWindow = _host!.Services.GetRequiredService<MainWindow>();
         mainWindow.Show();
+
+        var contactService = _host!.Services.GetRequiredService<IContactService>();
+        contactService.LoadContactsAtStart();
     }
 }

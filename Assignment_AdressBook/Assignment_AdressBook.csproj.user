@@ -19,9 +19,6 @@
     <Compile Update="Views\GetContactView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\LoadFileView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\MenuView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -43,9 +40,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\GetContactView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\LoadFileView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MenuView.xaml">

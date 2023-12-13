@@ -9,11 +9,13 @@ public class ContactServiceConsoleApp : IContactServiceConsoleApp
 {
     private readonly IContactService _contactService;
     private readonly ShowFolder _showFolder;
+    private readonly IJsonReader _reader;
 
-    public ContactServiceConsoleApp(IContactService contactService, ShowFolder showFolder)
+    public ContactServiceConsoleApp(IContactService contactService, ShowFolder showFolder, IJsonReader reader)
     {
         _contactService = contactService;
         _showFolder = showFolder;
+        _reader = reader;
     }
 
     public void AddContactConsoleApp()
@@ -55,10 +57,17 @@ public class ContactServiceConsoleApp : IContactServiceConsoleApp
             if (!string.IsNullOrEmpty(email))
             {
                 IContact contact = _contactService?.GetContact(email)!;
-                Console.Clear();
-                Console.WriteLine($"Contact information for: {contact.FirstName} {contact.LastName}");
-                ContactInformation.DisplayDetails(contact);
-                DisplayMessage.Message("");
+                if (contact is not null)
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Contact information for: {contact.FirstName} {contact.LastName}");
+                    ContactInformation.DisplayDetails(contact);
+                    DisplayMessage.Message("");
+                }
+                else
+                {
+                    DisplayMessage.Message("Contact not found, please try again.");
+                }
             }
             else
             {
@@ -79,6 +88,7 @@ public class ContactServiceConsoleApp : IContactServiceConsoleApp
 
             if (contacts is not null && contacts.Any())
             {
+                List<IContact> loadedContacts = _reader.LoadFromFile();
                 foreach (IContact contact in contacts)
                 {
                     ContactInformation.DisplayDetails(contact);
@@ -116,14 +126,6 @@ public class ContactServiceConsoleApp : IContactServiceConsoleApp
                     string newNumber = Helpers.GetValidInput("Phone Number: ");
 
                     Console.Clear();
-                    Console.WriteLine("### AVAILABLE FILES ###");
-
-                    string folderPath = @"C:\EC\csharp\Assignment_AdressBook\Contact_Files";
-                    string[] files = Directory.GetFiles(folderPath);
-                    _showFolder?.AvailableFiles(folderPath);
-
-                    Console.Write("Enter the name of the file you wanna update: ");
-                    string currentFileName = Console.ReadLine() ?? string.Empty!;
 
                     contactToUpdate.FirstName = newFirstName;
                     contactToUpdate.LastName = newLastName;
@@ -131,7 +133,7 @@ public class ContactServiceConsoleApp : IContactServiceConsoleApp
                     contactToUpdate.Address = newAddress;
                     contactToUpdate.Phone = newNumber;
 
-                    _contactService?.UpdateContact(contactToUpdate, currentFileName);
+                    _contactService?.UpdateContact(contactToUpdate);
                     DisplayMessage.Message($"Contact '{contactToUpdate.FirstName}' successfully updated");
                 }
                 else
@@ -150,18 +152,14 @@ public class ContactServiceConsoleApp : IContactServiceConsoleApp
     {
         try
         {
-            string folderPath = @"C:\EC\csharp\Assignment_AdressBook\Contact_Files";
             Console.Clear();
             Console.WriteLine("### DELETE CONTACT ###");
             Console.WriteLine("E-mail of user to remove: ");
             string email = Console.ReadLine() ?? string.Empty!;
-            _showFolder?.AvailableFiles(folderPath);
-            Console.WriteLine("Enter name of file where you wanna delete: ");
-            string fileName = Console.ReadLine() ?? string.Empty!.Trim();
 
             if (!string.IsNullOrEmpty(email))
             {
-                _contactService?.RemoveContact(email, fileName);
+                _contactService?.RemoveContact(email);
                 DisplayMessage.Message($"Contact with e-mail {email} removed successfully.");
             }
             else

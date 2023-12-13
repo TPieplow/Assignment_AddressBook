@@ -36,7 +36,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <Button Content="X" Command="{Binding DataContext.RemoveContactCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
-                                    CommandParameter="{Binding Email}" Foreground="Red" HorizontalAlignment="Center" >
+                                    CommandParameter="{Binding Email}" HorizontalAlignment="Center" >
                                     <Button.Template>
                                         <ControlTemplate>
                                             <Grid>
@@ -47,8 +47,8 @@
                                     </Button.Template>
                                 </Button>
 
-                                <Button Content="Edit" Command="{Binding DataContext.UpdateContactCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
-                                    CommandParameter="{Binding Email}" Foreground="Blue" HorizontalAlignment="Center" >
+                                <Button Content="Edit" Command="{Binding DataContext.NavigateToEditContactCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                    CommandParameter="{Binding Email}" HorizontalAlignment="Center" >
                                     <Button.Template>
                                         <ControlTemplate>
                                             <Grid>

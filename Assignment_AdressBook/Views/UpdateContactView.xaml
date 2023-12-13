@@ -4,9 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Assignment_AdressBook.Views"
+             xmlns:viewmodels="clr-namespace:Assignment_AdressBook.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:UpdateContactViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+
+
+
+
+    <Grid Background="White">
+        <StackPanel>
+            <Label Content="Add A New Contact" HorizontalAlignment="Center" Foreground="white"></Label>
+            <Label Content="First name" Margin="20,0,20,0" FontSize="8"></Label>
+            <TextBox Text="{Binding Contact.FirstName}" Margin="20,0,20,0"/>
+            <Label Content="First name" Margin="20,0,20,0" FontSize="8"></Label>
+            <TextBox Text="{Binding Contact.LastName}" Margin="20,0,20,0" />
+            <Label Content="First name" Margin="20,0,20,0" FontSize="8"></Label>
+            <TextBox Text="{Binding Contact.Email}" Margin="20,0,20,0" />
+            <Label Content="First name" Margin="20,0,20,0" FontSize="8"></Label>
+            <TextBox Text="{Binding Contact.Phone}" Margin="20,0,20,0" />
+            <Label Content="First name" Margin="20,0,20,0" FontSize="8"></Label>
+            <TextBox Text="{Binding Contact.Address}" Margin="20,0,20,0" />
+
+            <Button Content="Save" Command="{Binding SaveAndUpdateCommand}" CommandParameter="{Binding Contact}" Margin="20,20,20,2" />
+            <Button Content="Back to menu" Command="{Binding BackToMenuCommand}" Margin="20,5,20,2" />
+        </StackPanel>
     </Grid>
 </UserControl>

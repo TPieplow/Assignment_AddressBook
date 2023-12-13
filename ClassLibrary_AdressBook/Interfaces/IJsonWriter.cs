@@ -2,6 +2,6 @@
 {
     public interface IJsonWriter
     {
-        void SaveToFile(string fileName, string textChoice, List<IContact> contacts);
+        void SaveToFile(List<IContact> contacts);
     }
 }

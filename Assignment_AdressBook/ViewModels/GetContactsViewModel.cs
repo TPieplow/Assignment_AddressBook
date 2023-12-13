@@ -14,18 +14,23 @@ public partial class GetContactsViewModel : ObservableObject
     private IContactService _contactService;
     [ObservableProperty]
     private IEnumerable<IContact>? _contactList;
+    private UpdateContactViewModel _updateContactViewModel;
 
     private readonly IServiceProvider _serviceProvider;
-    public GetContactsViewModel(IContactService contactService, IServiceProvider serviceProvider)
+    public GetContactsViewModel(IContactService contactService, IServiceProvider serviceProvider, UpdateContactViewModel updateContactViewModel)
     {
         _contactService = contactService;
         _serviceProvider = serviceProvider;
+        _updateContactViewModel = updateContactViewModel;
+        ContactList = _contactService.GetContacts();
     }
 
     [RelayCommand]
-    public void LoadContacts()
+    public void NavigateToEditContact(string email)
     {
-        ContactList = _contactService.GetContacts();
+        _updateContactViewModel.EditContact(email);
+        var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
+        mainViewModel.CurrentViewModel = _serviceProvider.GetRequiredService<UpdateContactViewModel>();
     }
 
     [RelayCommand]
@@ -33,7 +38,7 @@ public partial class GetContactsViewModel : ObservableObject
     {
         if (email != null)
         {
-            _contactService.RemoveContact(email, "whateverfilename");
+            _contactService.RemoveContact(email);
             MessageBox.Show("Contact removed");
             BackToMenu();
         }

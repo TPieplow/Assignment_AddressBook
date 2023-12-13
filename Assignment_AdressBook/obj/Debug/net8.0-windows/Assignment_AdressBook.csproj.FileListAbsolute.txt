@@ -64,6 +64,4 @@ C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-window
 C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-windows\Views\GetContactView.baml
 C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-windows\Views\UpdateContactView.baml
 C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-windows\Views\CreateFileView.g.cs
-C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-windows\Views\LoadFileView.g.cs
 C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-windows\Views\CreateFileView.baml
-C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\obj\Debug\net8.0-windows\Views\LoadFileView.baml

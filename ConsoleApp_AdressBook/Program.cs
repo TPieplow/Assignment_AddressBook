@@ -18,7 +18,6 @@ public class Program
     {
         var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
         {
-
             services.AddSingleton<IContactService, ContactService>();
             services.AddSingleton<IContactServiceConsoleApp, ContactServiceConsoleApp>();
             services.AddSingleton<DeleteFileConsoleApp>();
@@ -32,6 +31,10 @@ public class Program
 
         Console.Clear();
         builder.Start();
+
+        var contactService = builder.Services.GetRequiredService<IContactService>();
+        contactService.LoadContactsAtStart();
+
         var menuService = builder.Services.GetRequiredService<MenuConsole>();
         menuService.Menu();
     }

@@ -2,6 +2,6 @@
 {
     public interface IJsonReader
     {
-        List<IContact> LoadFromFile(string fileName);
+        List<IContact> LoadFromFile();
     }
 }

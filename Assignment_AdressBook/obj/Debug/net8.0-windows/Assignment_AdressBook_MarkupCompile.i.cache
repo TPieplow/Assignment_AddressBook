@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\EC\csharp\Assignment_AdressBook\Assignment_AdressBook\App.xaml
-8-853615143
+7287089918
 
-21-199853997
+19730902230
 228-1547383385
-MainWindow.xaml;Views\AddContactView.xaml;Views\CreateFileView.xaml;Views\GetContactsView.xaml;Views\GetContactView.xaml;Views\LoadFileView.xaml;Views\MenuView.xaml;Views\UpdateContactView.xaml;
+MainWindow.xaml;Views\AddContactView.xaml;Views\CreateFileView.xaml;Views\GetContactsView.xaml;Views\GetContactView.xaml;Views\MenuView.xaml;Views\UpdateContactView.xaml;
 
-True
+False
 

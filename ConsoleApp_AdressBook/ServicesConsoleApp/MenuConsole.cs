@@ -38,9 +38,6 @@ public class MenuConsole
                 "3. Show Specific Contact",
                 "4. Show All Contacs",
                 "5. Delete Contact",
-                "6. Save List to File",
-                "7. Load List from File",
-                "8. Delete File",
                 "0. Exit application"
             };
 
@@ -71,15 +68,6 @@ public class MenuConsole
 
                 case "5":
                     _contactsConsoleApp.DeleteContact();
-                    break;
-                case "6":
-                    _saveToFile.Save();
-                    break;
-                case "7":
-                    _loadFromFile.Load();
-                    break;
-                case "8":
-                    _deleteFileConsoleApp.DeleteFile();
                     break;
 
                 case "0":

@@ -7,34 +7,17 @@ namespace ClassLibrary_AdressBook.JsonHandling;
 public class JsonWriter : IJsonWriter
 {
 
-    public void SaveToFile(string fileName, string textChoice, List<IContact> contacts)
+    public void SaveToFile(List<IContact> contacts)
     {
         try
         {
+            string fileName = "TheFile";
             string filePath = Path.Combine(@"C:\EC\csharp\Assignment_AdressBook\Contact_Files", fileName);
+            filePath = Path.ChangeExtension(filePath, ".json");
 
-            switch (textChoice)
-            {
-                case "1":
-                    filePath = Path.ChangeExtension(filePath, ".txt");
+            string jsonData = JsonConvert.SerializeObject(contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
+            File.WriteAllText(filePath, jsonData);
 
-                    using (StreamWriter writer = new StreamWriter(filePath))
-                    {
-                        foreach (IContact contact in contacts)
-                        {
-                            string contactInformation = $"{contact.Id}{contact.FirstName}{contact.LastName}{contact.Email}{contact.Phone}{contact.Address}";
-                            writer.WriteLine(contactInformation);
-                        }
-                    }
-                    break;
-
-                case "2":
-                    filePath = Path.ChangeExtension(filePath, ".json");
-
-                    string jsonData = JsonConvert.SerializeObject(contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
-                    File.WriteAllText(filePath, jsonData);
-                    break;
-            }
         }
         catch (Exception ex)
         {
