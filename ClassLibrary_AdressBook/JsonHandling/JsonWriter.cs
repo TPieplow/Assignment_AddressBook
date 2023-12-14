@@ -6,10 +6,6 @@ namespace ClassLibrary_AdressBook.JsonHandling;
 
 public class JsonWriter : IJsonWriter
 {
-    /// <summary>
-    /// Method saving the current list to system, using JsonConvert
-    /// </summary>
-    /// <param name="contacts">Takes a list of contacts</param>
     public void SaveToFile(List<IContact> contacts)
     {
         try

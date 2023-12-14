@@ -1,4 +1,5 @@
-﻿using ClassLibrary_AdressBook.Interfaces;
+﻿using Assignment_AdressBook.EventArguments;
+using ClassLibrary_AdressBook.Interfaces;
 using ClassLibrary_AdressBook.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;

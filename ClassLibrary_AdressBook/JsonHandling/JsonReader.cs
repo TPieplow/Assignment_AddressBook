@@ -7,10 +7,6 @@ namespace ClassLibrary_AdressBook.JsonHandling;
 public class JsonReader : IJsonReader
 {
 
-    /// <summary>
-    /// Method using StreamReader, loading a predetermined JSON-file into the application
-    /// </summary>
-    /// <returns>A list of all contacts</returns>
     public List<IContact> LoadFromFile()
     {
         List<IContact>? loadedContacts = null;
@@ -24,7 +20,6 @@ public class JsonReader : IJsonReader
                 using (StreamReader reader = new StreamReader(filePath))
                 {
                     string jsonContent = reader.ReadToEnd();
-                    Console.WriteLine($"JSON content: {jsonContent}");
                     loadedContacts = JsonConvert.DeserializeObject<List<IContact>>(jsonContent, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All })!;
                 }
             }

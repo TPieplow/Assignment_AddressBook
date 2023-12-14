@@ -29,4 +29,10 @@
     <ProjectReference Include="..\ClassLibrary_AdressBook\ClassLibrary_AdressBook.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ConsoleApp_Tests\" />
+    <Folder Include="MAUI_Tests\" />
+    <Folder Include="WPF_Tests\" />
+  </ItemGroup>
+
 </Project>

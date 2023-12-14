@@ -1,6 +1,6 @@
 ﻿using ClassLibrary_AdressBook.Interfaces;
 
-namespace Assignment_AdressBook.ViewModels;
+namespace Assignment_AdressBook.EventArguments;
 
 /// <summary>
 /// Event arguments for the ContactAdded event, contains the added contact.

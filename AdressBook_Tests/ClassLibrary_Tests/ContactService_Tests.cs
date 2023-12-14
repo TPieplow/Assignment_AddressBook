@@ -3,7 +3,7 @@ using ClassLibrary_AdressBook.Models;
 using ClassLibrary_AdressBook.Services;
 using Moq;
 
-namespace AdressBook_Tests;
+namespace AdressBook_Tests.ClassLibrary_Tests;
 
 public class ContactService_Tests
 {

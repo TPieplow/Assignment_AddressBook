@@ -1,4 +1,6 @@
-﻿using ClassLibrary_AdressBook.Interfaces;
+﻿using Assignment_AdressBook.EventArguments;
+using Assignment_AdressBook.Interfaces;
+using ClassLibrary_AdressBook.Interfaces;
 using ClassLibrary_AdressBook.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -8,21 +10,12 @@ using System.Windows;
 
 namespace Assignment_AdressBook.ViewModels;
 
-public partial class AddContactViewModel : ObservableObject
+public partial class AddContactViewModel : ObservableObject, IAddContactViewModel
 {
     /// <summary>
     /// EventHandler signaling added contacts, triggers a UI render.
     /// </summary>
     public event EventHandler<ContactAddedEventArgs> ContactAdded;
-
-    /// <summary>
-    /// Invokes the ContactAdded event to signal to all subscribers that a new contact were added to the list,this triggers a render/update in the UI.
-    /// </summary>
-    /// <param name="contact"></param>
-    private void OnContactAdded(IContact contact)
-    {
-        ContactAdded?.Invoke(this, new ContactAddedEventArgs(contact));
-    }
 
     [ObservableProperty]
     private ObservableCollection<IContact> _contacts;
@@ -40,11 +33,20 @@ public partial class AddContactViewModel : ObservableObject
     }
 
     /// <summary>
+    /// Invokes the ContactAdded event to signal to all subscribers that a new contact were added to the list,this triggers a render/update in the UI.
+    /// </summary>
+    /// <param name="contact"></param>
+    private void OnContactAdded(IContact contact)
+    {
+        ContactAdded?.Invoke(this, new ContactAddedEventArgs(contact));
+    }
+
+    /// <summary>
     /// Saves the new contact in NewContact when calling AddContact(ClassLibrary).
     /// Using OnContactAdded to trigger the list rendering.
     /// </summary>
     [RelayCommand]
-    private void AddContact()
+    public void AddContact()
     {
         try
         {

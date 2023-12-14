@@ -2,7 +2,7 @@
 using ClassLibrary_AdressBook.Models;
 using Moq;
 
-namespace AdressBook_Tests;
+namespace AdressBook_Tests.ClassLibrary_Tests;
 
 public class JsonHandling_Tests
 {
