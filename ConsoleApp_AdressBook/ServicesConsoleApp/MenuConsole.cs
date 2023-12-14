@@ -1,6 +1,6 @@
 ﻿using ClassLibrary_AdressBook.Interfaces;
 using ConsoleApp_AdressBook.Interfaces;
-using ConsoleApp_AdressBook.ServicesConsoleApp.JsonHandling;
+
 
 namespace ConsoleApp_AdressBook.ServicesConsoleApp;
 
@@ -8,20 +8,15 @@ public class MenuConsole
 {
     private readonly IContactServiceConsoleApp _contactsConsoleApp;
 
-    private readonly SaveToFile _saveToFile;
-    private readonly LoadFromFile _loadFromFile;
-
     public MenuConsole(IContactServiceConsoleApp contactsConsoleApp,
         IEnumerable<IContact> contacts,
         IJsonReader jsonReader,
         IJsonWriter jsonWriter,
-        IContactService contactService)
+        IContactService contactService
+    )
 
     {
         _contactsConsoleApp = contactsConsoleApp;
-        _saveToFile = new SaveToFile(contactService, contacts, jsonWriter);
-        _loadFromFile = new LoadFromFile(jsonReader, contactService);
-
     }
 
     public void Menu()
