@@ -143,24 +143,25 @@ public class ContactService_Tests
         Assert.NotNull(result);
         Assert.Equal("UpdatedContact", result.FirstName);
     }
+
+    [Fact]
+    public void RemoveContact_Should_RemoveContact_UsingEmail()
+    {
+        // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        var readerMock = new Mock<IJsonReader>();
+        IContactService contactService = new ContactService(writerMock.Object, readerMock.Object);
+        IContact contact = new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "test@test.com", Address = "Vildsvinsvägen 23", Phone = "0763233614" };
+        contactService.AddContact(contact);
+
+        // Act
+        contactService.RemoveContact("test@test.com");
+        IContact result = contactService.GetContact("test@test.com");
+
+        // Assert
+        Assert.Null(result);
+    }
 }
-
-//    [Fact]
-//    public void RemoveContact_Should_RemoveContact_UsingEmail()
-//    {
-//        // Arrange
-//        var writerMock = new Mock<IJsonWriter>();
-//        IContactService contactService = new ContactService(writerMock.Object, new List<IContact>());
-//        IContact contact = new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "test@test.com", Address = "Vildsvinsvägen 23", Phone = "0763233614" };
-//        contactService.AddContact(contact);
-
-//        // Act
-//        contactService.RemoveContact("test@test.com", "whateverfilename");
-//        IContact result = contactService.GetContact("test@test.com");
-
-//        // Assert
-//        Assert.Null(result);
-//    }
 
 //    [Fact]
 //    public void RemoveContact_Should_HandleException_When_SaveToFile_ThrowsException()
