@@ -1,1 +1,1 @@
-{"$type":"System.Collections.Generic.List`1[[ClassLibrary_AdressBook.Interfaces.IContact, ClassLibrary_AdressBook]], System.Private.CoreLib","$values":[{"$type":"ClassLibrary_AdressBook.Models.Contact, ClassLibrary_AdressBook","Id":"85be8653-15a9-4a4f-bdf3-9f7e65669e5c","FirstName":"Ted","LastName":"Pieplow","Email":"ted.pieplow@gmail.com","Phone":"0763233614","Address":"Vildsvinsvägen 23"}]}
+{"$type":"System.Collections.Generic.List`1[[ClassLibrary_AdressBook.Interfaces.IContact, ClassLibrary_AdressBook]], System.Private.CoreLib","$values":[]}
