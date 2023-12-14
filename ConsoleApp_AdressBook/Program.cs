@@ -18,8 +18,6 @@ public class Program
         {
             services.AddSingleton<IContactService, ContactService>();
             services.AddSingleton<IContactServiceConsoleApp, ContactServiceConsoleApp>();
-
-            services.AddSingleton<ShowFolder>();
             services.AddSingleton<IJsonReader, JsonReader>();
             services.AddSingleton<IJsonWriter, JsonWriter>();
             services.AddSingleton<MenuConsole>();

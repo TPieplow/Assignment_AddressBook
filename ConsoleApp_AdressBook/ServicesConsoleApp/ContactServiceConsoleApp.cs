@@ -8,13 +8,12 @@ namespace ConsoleApp_AdressBook.ServiceConsoleApp;
 public class ContactServiceConsoleApp : IContactServiceConsoleApp
 {
     private readonly IContactService _contactService;
-    private readonly ShowFolder _showFolder;
+
     private readonly IJsonReader _reader;
 
-    public ContactServiceConsoleApp(IContactService contactService, ShowFolder showFolder, IJsonReader reader)
+    public ContactServiceConsoleApp(IContactService contactService, IJsonReader reader)
     {
         _contactService = contactService;
-        _showFolder = showFolder;
         _reader = reader;
     }
 

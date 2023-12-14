@@ -1,6 +1,4 @@
-﻿using ClassLibrary_AdressBook.Interfaces;
-using ConsoleApp_AdressBook.Interfaces;
-
+﻿using ConsoleApp_AdressBook.Interfaces;
 
 namespace ConsoleApp_AdressBook.ServicesConsoleApp;
 
