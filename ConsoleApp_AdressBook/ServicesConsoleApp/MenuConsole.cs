@@ -8,12 +8,7 @@ public class MenuConsole
 {
     private readonly IContactServiceConsoleApp _contactsConsoleApp;
 
-    public MenuConsole(IContactServiceConsoleApp contactsConsoleApp,
-        IEnumerable<IContact> contacts,
-        IJsonReader jsonReader,
-        IJsonWriter jsonWriter,
-        IContactService contactService
-    )
+    public MenuConsole(IContactServiceConsoleApp contactsConsoleApp)
 
     {
         _contactsConsoleApp = contactsConsoleApp;
