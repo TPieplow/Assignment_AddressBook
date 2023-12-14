@@ -8,7 +8,7 @@ public class JsonReader : IJsonReader
 {
 
     /// <summary>
-    /// Method using StreamReader, loading a predetermined JSON-file to the system
+    /// Method using StreamReader, loading a predetermined JSON-file into the application
     /// </summary>
     /// <returns>A list of all contacts</returns>
     public List<IContact> LoadFromFile()

@@ -1,10 +1,8 @@
 ﻿
-using ClassLibrary_AdressBook.FolderHandler;
 using ClassLibrary_AdressBook.Interfaces;
 using ClassLibrary_AdressBook.JsonHandling;
 using ClassLibrary_AdressBook.Models;
 using ClassLibrary_AdressBook.Services;
-using ConsoleApp_AdressBook.FolderHandler;
 using ConsoleApp_AdressBook.Interfaces;
 using ConsoleApp_AdressBook.ServiceConsoleApp;
 using ConsoleApp_AdressBook.ServicesConsoleApp;
@@ -20,8 +18,7 @@ public class Program
         {
             services.AddSingleton<IContactService, ContactService>();
             services.AddSingleton<IContactServiceConsoleApp, ContactServiceConsoleApp>();
-            services.AddSingleton<DeleteFileConsoleApp>();
-            services.AddSingleton<IDeleteFile, DeleteFile>();
+
             services.AddSingleton<ShowFolder>();
             services.AddSingleton<IJsonReader, JsonReader>();
             services.AddSingleton<IJsonWriter, JsonWriter>();
