@@ -88,38 +88,39 @@ public class ContactService_Tests
         // Assert
         Assert.Null(result);
     }
+
+    [Fact]
+    public void GetContact_Should_HandleExeption_AndReturnNull()
+    {
+        // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        var readerMock = new Mock<IJsonReader>();
+
+        IContactService contactService = new ContactService(writerMock.Object, readerMock.Object);
+
+        // Act & Assert
+        var result = contactService.GetContact("test@test.com");
+        Assert.Null(result);
+    }
+
+
+    [Fact]
+    public void GetContacts_Should_GetAllContactsFromList_ThenReturnListOfContacts()
+    {
+        // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        var readerMock = new Mock<IJsonReader>();
+        IContactService contactService = new ContactService(writerMock.Object, readerMock.Object);
+        IContact contact = new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "ted@gmail.com", Address = "Vildsvinsvägen 23", Phone = "0763233614" };
+        contactService.AddContact(contact);
+
+        // Act
+        IEnumerable<IContact> result = contactService.GetContacts();
+
+        // Assert
+        Assert.NotNull(result);
+    }
 }
-//    [Fact]
-//    public void GetContact_Should_HandleExeption_AndReturnNull()
-//    {
-//        // Arrange
-//        var writerMock = new Mock<IJsonWriter>();
-
-//        IContactService contactService = new ContactService(writerMock.Object, new List<IContact>());
-
-//        // Act
-//        var result = contactService.GetContact("test@test.com");
-
-//        // Assert
-//        Assert.Null(result);
-//    }
-
-//    [Fact]
-//    public void GetContacts_Should_GetAllContactssFromList_ThenReturnListOfContacts()
-//    {
-//        // Arrange
-//        var writerMock = new Mock<IJsonWriter>();
-//        IContactService contactService = new ContactService(writerMock.Object, new List<IContact>());
-//        IContact contact = new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "ted@gmail.com", Address = "Vildsvinsvägen 23", Phone = "0763233614" };
-//        contactService.AddContact(contact);
-
-//        // Act
-//        IEnumerable<IContact> result = contactService.GetContacts();
-
-//        // Assert
-//        Assert.NotNull(result);
-//        Assert.True(((IEnumerable<Contact>)result).Any());
-//    }
 
 //    [Fact]
 //    public void UpdateContact_Should_UpdateCurrentContact()
