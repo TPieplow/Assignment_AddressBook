@@ -7,6 +7,12 @@ public class Helpers
 {
     private static Regex EmailRegex => new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
 
+    /// <summary>
+    /// Method checking if input is null or empty using a do while loop to "trap" the user if incorrect input.
+    /// If the prompt is email, call GetValidEmail
+    /// </summary>
+    /// <param name="prompt">takes a predetermined promt i.e First name, last name</param>
+    /// <returns></returns>
     public static string GetValidInput(string prompt)
     {
         string input;
@@ -29,6 +35,11 @@ public class Helpers
         return input;
     }
 
+    /// <summary>
+    /// Method using regex to determain if email is valid.
+    /// </summary>
+    /// <param name="prompt">takes a predetermined promt, email</param>
+    /// <returns></returns>
     public static string GetValidEmail(string prompt)
     {
         string email;

@@ -5,6 +5,10 @@ namespace ConsoleApp_AdressBook.UtilitiesConsoleApp;
 
 public class ContactInformation
 {
+    /// <summary>
+    /// Method displays contact details for the specified contact
+    /// </summary>
+    /// <param name="contact">The contact for which to display property values</param>
     public static void DisplayDetails(IContact contact)
     {
         Console.WriteLine("------------------------------------------------------------------------------");
