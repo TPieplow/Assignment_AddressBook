@@ -1,86 +1,94 @@
-﻿//using ClassLibrary_AdressBook.Interfaces;
-//using ClassLibrary_AdressBook.Models;
-//using ClassLibrary_AdressBook.Services;
-//using Moq;
+﻿using ClassLibrary_AdressBook.Interfaces;
+using ClassLibrary_AdressBook.Models;
+using ClassLibrary_AdressBook.Services;
+using Moq;
 
-//namespace AdressBook_Tests;
+namespace AdressBook_Tests;
 
-//public class ContactService_Tests
-//{
-//    [Fact]
-//    public void AddContact_Should_AddOneContactToContactList_ThenReturnTrue()
-//    {
-//        //Arrange
-//        var writerMock = new Mock<IJsonWriter>();
-//        IContact contact = new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "ted@gmail.com", Address = "Vildsvinsvägen 23", Phone = "0763233614" };
-//        IContactService contactService = new ContactService(writerMock.Object, new List<IContact>());
+public class ContactService_Tests
+{
+    [Fact]
+    public void AddContact_Should_AddOneContactToContactList_ThenReturnTrue()
+    {
+        //Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        var readerMock = new Mock<IJsonReader>();
+        IContact contact = new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "ted@gmail.com", Address = "Vildsvinsvägen 23", Phone = "0763233614" };
+        IContactService contactService = new ContactService(writerMock.Object, readerMock.Object);
 
-//        //Act
-//        bool result = contactService.AddContact(contact);
+        //Act
+        bool result = contactService.AddContact(contact);
 
-//        //Assert
-//        Assert.True(result);
-//    }
+        //Assert
+        Assert.True(result);
+    }
 
-//    [Fact]
-//    public void AddContact_Should_NotAddContactToList_WhenContactAlreadyExists_ThenReturnFalse()
-//    {
-//        // Arrange
-//        var writerMock = new Mock<IJsonWriter>();
-//        IContactService contactService = new ContactService(writerMock.Object, new List<IContact>());
-//        IContact contact = new Contact { Email = "test@test.se" };
 
-//        // Act
-//        contactService.AddContact(contact);
-//        var result = contactService.AddContact(contact);
+    [Fact]
+    public void AddContact_Should_NotAddContactToList_WhenContactAlreadyExists_ThenReturnFalse()
+    {
+        // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        var readerMock = new Mock<IJsonReader>();
+        IContactService contactService = new ContactService(writerMock.Object, readerMock.Object);
+        IContact contact = new Contact { Email = "test@test.se" };
 
-//        // Assert
-//        Assert.False(result);
-//        Assert.Single(contactService.GetContacts());
-//    }
+        // Act
+        contactService.AddContact(contact);
+        var result = contactService.AddContact(contact);
 
-//    [Fact]
-//    public void AddContact_Should_HandleException_When_ContactIsNull()
-//    {
-//        // Arrange
-//        var writerMock = new Mock<IJsonWriter>();
-//        IContactService contactService = new ContactService(writerMock.Object, new List<IContact>());
+        // Assert
+        Assert.False(result);
+        Assert.Single(contactService.GetContacts());
+    }
 
-//        // Act & Assert
-//        Assert.Throws<ArgumentNullException>(() => contactService.AddContact(null!));
-//    }
 
-//    [Fact]
-//    public void GetContact_Should_Return_SpecificContact_UsingEmail()
-//    {
-//        // Arrange
-//        var writerMock = new Mock<IJsonWriter>();
-//        var expectedContact = new Mock<IContact>();
-//        expectedContact.SetupGet(c => c.Email).Returns("test@test.com");
+    [Fact]
+    public void AddContact_Should_HandleException_When_ContactIsNull()
+    {
+        // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        var readerMock = new Mock<IJsonReader>();
+        IContactService contactService = new ContactService(writerMock.Object, readerMock.Object);
 
-//        var contactService = new ContactService(writerMock.Object, new List<IContact> { expectedContact.Object });
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => contactService.AddContact(null!));
+    }
 
-//        // Act
-//        var result = contactService.GetContact("test@test.com");
 
-//        // Assert
-//        Assert.Equal(expectedContact.Object, result);
-//    }
+    [Fact]
+    public void GetContact_Should_Return_SpecificContact_UsingEmail()
+    {
+        // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        var readerMock = new Mock<IJsonReader>();
+        var contactService = new ContactService(writerMock.Object, readerMock.Object);
+        IContact newContact = new Contact { Email = "test@test.com" };
 
-//    [Fact]
-//    public void GetContact_Should_ReturnNull_WhenContactNotFound()
-//    {
-//        // Arrange
-//        var writerMock = new Mock<IJsonWriter>();
-//        var contactService = new ContactService(writerMock.Object, new List<IContact>());
+        contactService.AddContact(newContact);
 
-//        // Act
-//        var result = contactService.GetContact("thismaildoesntexist@test.com");
+        // Act
+        var result = contactService.GetContact("test@test.com");
 
-//        // Assert
-//        Assert.Null(result);
-//    }
+        // Assert
+        Assert.Equal(newContact, result);
+    }
 
+    [Fact]
+    public void GetContact_Should_ReturnNull_WhenContactNotFound()
+    {
+        // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        var readerMock = new Mock<IJsonReader>();
+        var contactService = new ContactService(writerMock.Object, readerMock.Object);
+
+        // Act
+        var result = contactService.GetContact("thismaildoesntexist@test.com");
+
+        // Assert
+        Assert.Null(result);
+    }
+}
 //    [Fact]
 //    public void GetContact_Should_HandleExeption_AndReturnNull()
 //    {

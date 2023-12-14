@@ -37,6 +37,7 @@ public class ContactService : IContactService
     {
         try
         {
+            ArgumentNullException.ThrowIfNull(contact);
             if (!_contactList.Any(c => c.Email.ToLower() == contact.Email.ToLower()))
             {
                 _contactList.Add(contact);
