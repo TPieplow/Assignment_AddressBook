@@ -151,7 +151,7 @@ public class ContactService_Tests
         var writerMock = new Mock<IJsonWriter>();
         var readerMock = new Mock<IJsonReader>();
         IContactService contactService = new ContactService(writerMock.Object, readerMock.Object);
-        IContact contact = new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "test@test.com", Address = "Vildsvinsvägen 23", Phone = "0763233614" };
+        IContact contact = new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "test@test.com", Address = "testvägen", Phone = "0766006600" };
         contactService.AddContact(contact);
 
         // Act
@@ -161,42 +161,42 @@ public class ContactService_Tests
         // Assert
         Assert.Null(result);
     }
+
+
+    [Fact]
+    public void RemoveContact_Should_HandleException_When_SaveToFile_ThrowsException()
+    {
+
+        // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        var readerMock = new Mock<IJsonReader>();
+        IContactService contactService = new ContactService(writerMock.Object, readerMock.Object);
+        IContact contactToRemove = new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "test@test.com", Address = "testvägen", Phone = "0766006600" };
+
+        // Act
+        contactService.AddContact(contactToRemove);
+        contactService.RemoveContact("thisemaildoesntexist@test.com");
+        writerMock.Setup(w => w.SaveToFile(It.IsAny<List<IContact>>())).Throws(new Exception("Simulated exception"));
+
+        // Assert
+        Assert.Single(contactService.GetContacts());
+        Assert.Equal("test@test.com", contactService.GetContacts().First().Email);
+    }
+
+    [Fact]
+    public void RemoveContact_Should_HandleException_When_ContactToRemove_IsNull()
+    {
+        // Arrange
+        var writerMock = new Mock<IJsonWriter>();
+        var readerMock = new Mock<IJsonReader>();
+
+        IContactService contactService = new ContactService(writerMock.Object, readerMock.Object);
+        IContact contactToRemove = null;
+
+        // Act
+        contactService.RemoveContact("test@test.com");
+
+        // Assert
+        Assert.Null(contactToRemove);
+    }
 }
-
-//    [Fact]
-//    public void RemoveContact_Should_HandleException_When_SaveToFile_ThrowsException()
-//    {
-
-//        // Arrange
-//        var writerMock = new Mock<IJsonWriter>();
-//        writerMock.Setup(w => w.SaveToFile(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<IContact>>())).Throws(new Exception("Simulated exception"));
-
-//        IContactService contactService = new ContactService(writerMock.Object, new List<IContact>());
-//        IContact contactToRemove = new Contact { FirstName = "Ted", LastName = "Pieplow", Email = "test@test.com", Address = "Vildsvinsvägen 23", Phone = "0763233614" };
-//        contactService.AddContact(contactToRemove);
-
-//        // Act
-//        contactService.RemoveContact("testing@test.com", "whateverfilename");
-
-//        // Assert
-//        Assert.Single(contactService.GetContacts());
-//        Assert.Equal("test@test.com", contactService.GetContacts().First().Email);
-//    }
-
-//    [Fact]
-//    public void RemoveContact_Should_HandleException_When_ContactToRemove_IsNull()
-//    {
-//        // Arrange
-//        var writerMock = new Mock<IJsonWriter>();
-
-//        IContactService contactService = new ContactService(writerMock.Object, new List<IContact>());
-//        IContact contactToRemove = null;
-//        contactService.AddContact(contactToRemove);
-
-//        // Act
-//        contactService.RemoveContact("test@test.com", "whateverfilename");
-
-//        // Assert
-//        Assert.Null(contactToRemove);
-//    }
-//}

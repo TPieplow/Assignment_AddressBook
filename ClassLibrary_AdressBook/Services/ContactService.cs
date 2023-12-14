@@ -106,6 +106,10 @@ public class ContactService : IContactService
                 _contactList.Remove(contactToRemove);
                 _writer.SaveToFile(_contactList);
             }
+            else
+            {
+                Debug.WriteLine($"Contact with {email} doesnt exist.");
+            }
         }
         catch (Exception ex) { Debug.WriteLine($"{ex.Message}"); }
     }
