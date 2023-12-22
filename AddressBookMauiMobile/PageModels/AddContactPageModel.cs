@@ -3,6 +3,7 @@ using ClassLibrary_AdressBook.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Contact = ClassLibrary_AdressBook.Models.Contact;
+using System.Collections.ObjectModel;
 
 
 namespace AddressBookMauiMobile.PageModels;
@@ -13,33 +14,32 @@ public partial class AddContactPageModel : ObservableObject
     [ObservableProperty]
     private IContact newContact = new Contact();
     private readonly IContactService _contactService;
-    public AddContactPageModel(IContactService contactService)
+    private readonly ObservableCollection<IContact> _contactList;
+    public AddContactPageModel(IContactService contactService, ObservableCollection<IContact> contactList)
     {
         _contactService = contactService;
+        _contactList = contactList;
     }
 
     [RelayCommand]
-    private async Task AddContact()
+    public async Task AddContact()
     {
         try
         {
-            if (NewContact != null)
+            if (NewContact is not null)
             {
-                if (!string.IsNullOrWhiteSpace(NewContact.Email))
+                bool contactAdded = _contactService.AddContact(NewContact);
+                if (contactAdded)
                 {
-                    bool contactAdded = _contactService!.AddContact(NewContact);
-                    if (contactAdded)
-                    {
-                        await Shell.Current.DisplayAlert("Added", "Contact added successfully", "OK");
-                        NewContact = new Contact();
-                    }
+                    _contactList.Add(NewContact);
+                    await Shell.Current.DisplayAlert("Added", "Contact added successfully", "OK");
+                    NewContact = new Contact();
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Unable to add contact", "Contact already exist", "OK");
+                    await Shell.Current.DisplayAlert("Not added", "Couldnt add contact", "OK");
                 }
             }
-
         }
         catch (Exception ex)
         {

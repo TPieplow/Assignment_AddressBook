@@ -16,7 +16,6 @@ public class JsonWriter : IJsonWriter
 
             string jsonData = JsonConvert.SerializeObject(contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
             File.WriteAllText(filePath, jsonData);
-
         }
         catch (Exception ex)
         {

@@ -3,6 +3,7 @@ using AddressBookMauiMobile.Pages;
 using ClassLibrary_AdressBook.Interfaces;
 using ClassLibrary_AdressBook.JsonHandling;
 using ClassLibrary_AdressBook.Services;
+using System.Collections.ObjectModel;
 using Contact = ClassLibrary_AdressBook.Models.Contact;
 
 namespace AddressBookMauiMobile
@@ -24,6 +25,7 @@ namespace AddressBookMauiMobile
             builder.Services.AddSingleton<IJsonWriter, JsonWriter>();
             builder.Services.AddSingleton<IContact, Contact>();
             builder.Services.AddSingleton<IContactService, ContactService>();
+            builder.Services.AddScoped<ObservableCollection<IContact>>();
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<MainPageModel>();
             builder.Services.AddSingleton<AddContactPage>();

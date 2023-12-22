@@ -8,8 +8,8 @@
              x:Class="AddressBookMauiMobile.Pages.GetContactsPage"
              Title="GetContactsPage"
              >
-    
-    <VerticalStackLayout>
+
+    <Grid>
         <ScrollView>
             <StackLayout>
                 <ListView ItemsSource="{Binding ContactList}" HasUnevenRows="True">
@@ -22,6 +22,7 @@
                                     <Label Text="{Binding Email}" />
                                     <Label Text="{Binding Phone}" />
                                     <Label Text="{Binding Address}" />
+                                    <Label Text="{Binding Id}" />
 
                                     <StackLayout Orientation="Horizontal" Spacing="10">
                                         <Button Text="Update" Command="{Binding Source={x:Reference Name=GetContactsPage}, Path=BindingContext.NavigateToUpdateCommand}" CommandParameter="{Binding Email}" WidthRequest="200"/>
@@ -34,5 +35,5 @@
                 </ListView>
             </StackLayout>
         </ScrollView>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

@@ -15,13 +15,16 @@ public partial class GetContactsPageModel : ObservableObject
     private readonly IContactService _contactService;
     private readonly UpdateContactPageModel _updateContact;
     private readonly MainPageModel _mainPageModel;
+    private readonly IJsonReader _reader;
 
-    public GetContactsPageModel(IContactService contactService, UpdateContactPageModel updateContact, MainPageModel mainPageModel)
+    public GetContactsPageModel(IContactService contactService, UpdateContactPageModel updateContact, MainPageModel mainPageModel, IJsonReader reader)
     {
         _contactService = contactService;
         _updateContact = updateContact;
         ContactList = new ObservableCollection<IContact>(_contactService.GetContacts());
         _mainPageModel = mainPageModel;
+        _reader = reader;
+        _reader.LoadFromFile();
         LoadContactsAtStart();
     }
 
@@ -30,11 +33,23 @@ public partial class GetContactsPageModel : ObservableObject
         try
         {
             ObservableCollection<IContact> loadedContacts = _mainPageModel.ContactList;
-            ContactList = new ObservableCollection<IContact>(loadedContacts);
+            UpdateContactList(loadedContacts);
         }
         catch (Exception ex)
         {
             Debug.WriteLine(ex.Message);
+        }
+    }
+
+    private void UpdateContactList(IEnumerable<IContact> contacts)
+    {
+        ContactList?.Clear();
+        if (contacts is not null)
+        {
+            foreach (var contact in contacts)
+            {
+                ContactList?.Add(contact);
+            }
         }
     }
 
@@ -50,5 +65,6 @@ public partial class GetContactsPageModel : ObservableObject
     {
          _contactService.RemoveContact(email);
         await Shell.Current.DisplayAlert("Removed", "Contact successfully removed.", "OK");
+        UpdateContactList(_contactService.GetContacts());
     }
 }

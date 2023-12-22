@@ -14,9 +14,9 @@ public class ContactService : IContactService
 
     public ContactService(IJsonWriter writer, IJsonReader reader)
     {
-        _contactList = new List<IContact>();
         _writer = writer;
         _reader = reader;
+        _contactList = _reader.LoadFromFile();
     }
 
     public void LoadContactsAtStart()
@@ -38,6 +38,7 @@ public class ContactService : IContactService
         try
         {
             ArgumentNullException.ThrowIfNull(contact);
+
             if (!_contactList.Any(c => c.Email.ToLower() == contact.Email.ToLower()))
             {
                 _contactList.Add(contact);
