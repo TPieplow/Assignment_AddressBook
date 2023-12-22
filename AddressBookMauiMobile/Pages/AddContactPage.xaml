@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pagemodels="clr-namespace:AddressBookMauiMobile.PageModels"
+             x:Class="AddressBookMauiMobile.Pages.AddContactPage"
+             Title="AddContactPage"
+             x:DataType="{x:Type pagemodels:AddContactPageModel}"
+             >
+
+    <VerticalStackLayout HorizontalOptions="Center" Margin="0,50,0,0">
+        <Frame>
+            <StackLayout>
+                <Label Text="First name: "/>
+                <Entry Text="{Binding NewContact.FirstName}" MinimumWidthRequest="200" IsSpellCheckEnabled="False" IsTextPredictionEnabled="False"/>
+                <Label Text="Last name: " />
+                <Entry Text="{Binding NewContact.LastName}" MinimumWidthRequest="200"/>
+                <Label Text="E-mail: " />
+                <Entry Text="{Binding NewContact.Email}" MinimumWidthRequest="200"/>
+                <Label Text="Phone: " />
+                <Entry Text="{Binding NewContact.Phone}" MinimumWidthRequest="200"/>
+                <Label Text="Address: " />
+                <Entry Text="{Binding NewContact.Address}" MinimumWidthRequest="200"/>
+            </StackLayout>
+        </Frame>
+        <Button Command="{Binding AddContactCommand}" Text="Save" MinimumWidthRequest="200"/>
+    </VerticalStackLayout>
+</ContentPage>

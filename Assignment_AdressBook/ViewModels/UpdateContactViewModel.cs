@@ -1,4 +1,6 @@
-﻿using ClassLibrary_AdressBook.Interfaces;
+﻿using Assignment_AdressBook.Interfaces;
+using ClassLibrary_AdressBook.Interfaces;
+using ClassLibrary_AdressBook.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,7 +8,7 @@ using System.Windows;
 
 namespace Assignment_AdressBook.ViewModels;
 
-public partial class UpdateContactViewModel : ObservableObject
+public partial class UpdateContactViewModel : ObservableObject, IUpdateContactViewModel
 {
     private IContactService _contactService;
     private readonly IServiceProvider _serviceProvider;
@@ -21,10 +23,7 @@ public partial class UpdateContactViewModel : ObservableObject
     }
 
 
-    /// <summary>
-    /// Method responsible of calling the right contact to update.
-    /// </summary>
-    /// <param name="email">Taking email as a parameter to find the right contact to update.</param>
+
     [RelayCommand]
     public void EditContact(string email)
     {
@@ -45,10 +44,6 @@ public partial class UpdateContactViewModel : ObservableObject
         }
     }
 
-    /// <summary>
-    /// Method for calling the UpdateContact method. 
-    /// </summary>
-    /// <param name="contact">Takes a contact to update</param>
     [RelayCommand]
     public void SaveAndUpdate(IContact contact)
     {
@@ -69,10 +64,6 @@ public partial class UpdateContactViewModel : ObservableObject
         }
     }
 
-    /// <summary>
-    /// Navigation method that allows the user to return to the main page.
-    /// Essential for managing user navigation.
-    /// </summary>
     [RelayCommand]
     public void BackToMenu()
     {

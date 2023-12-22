@@ -1,4 +1,5 @@
 ﻿using Assignment_AdressBook.EventArguments;
+using Assignment_AdressBook.Interfaces;
 using ClassLibrary_AdressBook.Interfaces;
 using ClassLibrary_AdressBook.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -9,12 +10,13 @@ using System.Windows;
 
 namespace Assignment_AdressBook.ViewModels;
 
-public partial class GetContactsViewModel : ObservableObject
+public partial class GetContactsViewModel : ObservableObject, IGetContactsViewModel
 {
     [ObservableProperty]
     private ObservableCollection<IContact>? _contactList;
     private IContactService _contactService;
     private UpdateContactViewModel _updateContactViewModel;
+    public event EventHandler<ContactAddedEventArgs>? ContactAdded;
 
     private readonly IServiceProvider _serviceProvider;
 
@@ -48,10 +50,7 @@ public partial class GetContactsViewModel : ObservableObject
         ContactList!.Add(e.AddedContact);
     }
 
-    /// <summary>
-    /// Lets the user navigate to UpdateContact, taking string email as a parameter since we are using email to search for the chosen contact.
-    /// </summary>
-    /// <param name="email">The email of the contact to update</param>
+
     [RelayCommand]
     public void NavigateToEditContact(string email)
     {
@@ -60,11 +59,6 @@ public partial class GetContactsViewModel : ObservableObject
         mainViewModel.CurrentViewModel = _serviceProvider.GetRequiredService<UpdateContactViewModel>();
     }
 
-    /// <summary>
-    /// Method for removing a contact from the list/file. 
-    /// Takes email as a parameter since its the identifier 
-    /// </summary>
-    /// <param name="email">The email of the contact to be removed</param>
     [RelayCommand]
     public void RemoveContact(string email)
     {
@@ -76,10 +70,6 @@ public partial class GetContactsViewModel : ObservableObject
         }
     }
 
-    /// <summary>
-    /// Navigation method that allows the user to return to the main page.
-    /// Essential for managing user navigation.
-    /// </summary>
     [RelayCommand]
     public void BackToMenu()
     {
