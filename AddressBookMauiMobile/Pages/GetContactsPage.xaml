@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pagemodels="clr-namespace:AddressBookMauiMobile.PageModels"
+             xmlns:model="clr-namespace:ClassLibrary_AdressBook.Models;assembly=ClassLibrary_AdressBook"
+             x:DataType="{x:Type pagemodels:GetContactsPageModel}"
+             
              x:Class="AddressBookMauiMobile.Pages.GetContactsPage"
-             Title="GetContactsPage">
+             Title="GetContactsPage"
+             >
+    
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <ScrollView>
+            <StackLayout>
+                <ListView ItemsSource="{Binding ContactList}" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Contact">
+                            <ViewCell>
+                                <StackLayout Padding="10">
+                                    <Label Text="{Binding FirstName}" FontAttributes="Bold" />
+                                    <Label Text="{Binding LastName}" />
+                                    <Label Text="{Binding Email}" />
+                                    <Label Text="{Binding Phone}" />
+                                    <Label Text="{Binding Address}" />
+
+                                    <StackLayout Orientation="Horizontal" Spacing="10">
+                                        <Button Text="Update" Command="{Binding Source={x:Reference Name=GetContactsPage}, Path=BindingContext.NavigateToUpdateCommand}" CommandParameter="{Binding Email}" WidthRequest="200"/>
+                                        <Button Text="Remove" Command="{Binding Source={x:Reference Name=GetContactsPage}, Path=BindingContext.RemoveContactCommand}" CommandParameter="{Binding Email}" MaximumWidthRequest="200"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
     </VerticalStackLayout>
 </ContentPage>

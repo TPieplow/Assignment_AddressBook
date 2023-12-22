@@ -5,13 +5,13 @@
              x:Class="AddressBookMauiMobile.MainPage"
              x:DataType="{x:Type pagemodels:MainPageModel}"
              >
-          
+
 
     <ScrollView>
-        <VerticalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
             <Button Text="Add Contact" Command="{Binding NavigateToAddContactCommand}" MinimumWidthRequest="200"/>
             <Button Text="Contacts" Command="{Binding NavigateToGetContactsCommand}" MinimumWidthRequest="200"/>
-        </VerticalStackLayout>
+        </HorizontalStackLayout>
     </ScrollView>
 
 </ContentPage>
