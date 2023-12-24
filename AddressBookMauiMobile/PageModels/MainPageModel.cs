@@ -37,12 +37,12 @@ public partial class MainPageModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task NavigateToAddContact()
+    private static async Task NavigateToAddContact()
     {
         await Shell.Current.GoToAsync("AddContactPage");
     }
     [RelayCommand]
-    private async Task NavigateToGetContacts()
+    private static async Task NavigateToGetContacts()
     {
         await Shell.Current.GoToAsync("GetContactsPage");
     }

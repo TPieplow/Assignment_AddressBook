@@ -4,12 +4,29 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:AddressBookMauiMobile"
+    xmlns:pages="clr-namespace:AddressBookMauiMobile.Pages"
     Shell.FlyoutBehavior="Disabled"
-    Title="AddressBookMauiMobile">
+    Title="AddressBookMauiMobile"
+    >
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+
+    <ShellContent
+        Title="Add Contact" 
+        ContentTemplate="{DataTemplate pages:AddContactPage}" 
+        Route="AddContactPage" />
+
+    <ShellContent 
+        Title="GetContacts"
+        ContentTemplate="{DataTemplate pages:GetContactsPage}"
+        Route="GetContactPage"/>
+
+    <ShellContent
+        Title="Update Contact"
+        ContentTemplate="{DataTemplate pages:UpdateContactPage}"
+        Route="UpdateContactPage" />
 
 </Shell>

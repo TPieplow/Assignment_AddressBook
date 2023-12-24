@@ -1,41 +1,61 @@
-﻿using ClassLibrary_AdressBook.Interfaces;
+﻿using AddressBookMauiMobile.EventArguments;
+using ClassLibrary_AdressBook.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Diagnostics;
 
 namespace AddressBookMauiMobile.PageModels;
 
 public partial class UpdateContactPageModel : ObservableObject
 {
     [ObservableProperty]
-    private IContact _contact;
+    private IContact? _contact;
     private readonly IContactService _contactService;
+    private readonly IJsonReader _reader;
 
-    public UpdateContactPageModel(IContactService contactService, IContact contact)
+
+    public UpdateContactPageModel(IContactService contactService, IJsonReader reader, ContactListEventHandler contactListEventHandler)
     {
         _contactService = contactService;
-        _contact = contact;
+        _reader = reader;
+        _reader.LoadFromFile();
     }
 
     [RelayCommand]
-    public void ContactToUpdate(string email)
-    {
-        Contact = _contactService.GetContact(email);
-    }
-
-    [RelayCommand]
-    private async Task SaveAndUpdate(IContact contact)
+    public async Task ContactToUpdate(string email)
     {
         try
         {
-            var resultUpdate = _contactService!.UpdateContact(contact);
-            if (resultUpdate)
+            if (email is not null)
             {
-                await Shell.Current.DisplayAlert("Updated", "Contact successfully updated.", "OK");
-                await Shell.Current.GoToAsync("..");
+                Contact = _contactService.GetContact(email);
             }
-            else
+        }
+        catch (Exception ex)
+        {
+            await Shell.Current.DisplayAlert("Couldnt update contact.", $"An error occurred: {ex.Message}", "OK");
+        }
+    }
+
+    [RelayCommand]
+    public async Task SaveAndUpdate()
+    {
+        try
+        {
+            if (!string.IsNullOrWhiteSpace(Contact?.Email))
             {
-                await Shell.Current.DisplayAlert("Couldnt update", "Contact already exist", "OK");
+                var resultUpdate = _contactService!.UpdateContact(Contact);
+                if (resultUpdate)
+                {
+                    await Shell.Current.DisplayAlert("Updated", "Contact successfully updated.", "OK");
+                    await Shell.Current.GoToAsync("..");
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Couldnt update", "Contact already exist", "OK");
+                }
             }
         }
         catch (Exception ex)

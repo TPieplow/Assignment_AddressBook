@@ -19,7 +19,7 @@
                 <Entry Text="{Binding Contact.Phone}" MinimumWidthRequest="200"/>
                 <Label Text="Address: " />
                 <Entry Text="{Binding Contact.Address}" MinimumWidthRequest="200"/>
-                <Button Text="Update" Command="{Binding ContactToUpdateCommand}" />
+                <Button Text="Update" Command="{Binding SaveAndUpdateCommand}" />
             </StackLayout>
         </Frame>
     </VerticalStackLayout>

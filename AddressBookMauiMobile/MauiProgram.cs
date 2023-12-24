@@ -1,4 +1,5 @@
-﻿using AddressBookMauiMobile.PageModels;
+﻿using AddressBookMauiMobile.EventArguments;
+using AddressBookMauiMobile.PageModels;
 using AddressBookMauiMobile.Pages;
 using ClassLibrary_AdressBook.Interfaces;
 using ClassLibrary_AdressBook.JsonHandling;
@@ -25,15 +26,18 @@ namespace AddressBookMauiMobile
             builder.Services.AddSingleton<IJsonWriter, JsonWriter>();
             builder.Services.AddSingleton<IContact, Contact>();
             builder.Services.AddSingleton<IContactService, ContactService>();
-            builder.Services.AddScoped<ObservableCollection<IContact>>();
+            builder.Services.AddSingleton<ContactListEventHandler>();
+
+            builder.Services.AddScoped<GetContactsPageModel>();
+            builder.Services.AddSingleton<ObservableCollection<IContact>>();
+            builder.Services.AddSingleton<UpdateContactPageModel>();
+            builder.Services.AddSingleton<AddContactPageModel>();
+
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<MainPageModel>();
             builder.Services.AddSingleton<AddContactPage>();
-            builder.Services.AddSingleton<AddContactPageModel>();
             builder.Services.AddSingleton<GetContactsPage>();
-            builder.Services.AddSingleton<GetContactsPageModel>();
             builder.Services.AddSingleton<UpdateContactPage>();
-            builder.Services.AddSingleton<UpdateContactPageModel>();
 
 
             return builder.Build();

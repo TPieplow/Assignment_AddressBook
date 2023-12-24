@@ -9,26 +9,29 @@
              Title="GetContactsPage"
              >
 
-    <Grid>
+    <Grid VerticalOptions="Center" HorizontalOptions="Center">
         <ScrollView>
-            <StackLayout>
-                <ListView ItemsSource="{Binding ContactList}" HasUnevenRows="True">
+            <StackLayout HorizontalOptions="Center">
+                <ListView ItemsSource="{Binding ContactList}" HasUnevenRows="True" HorizontalOptions="Center">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:Contact">
                             <ViewCell>
-                                <StackLayout Padding="10">
-                                    <Label Text="{Binding FirstName}" FontAttributes="Bold" />
-                                    <Label Text="{Binding LastName}" />
-                                    <Label Text="{Binding Email}" />
-                                    <Label Text="{Binding Phone}" />
-                                    <Label Text="{Binding Address}" />
-                                    <Label Text="{Binding Id}" />
-
-                                    <StackLayout Orientation="Horizontal" Spacing="10">
-                                        <Button Text="Update" Command="{Binding Source={x:Reference Name=GetContactsPage}, Path=BindingContext.NavigateToUpdateCommand}" CommandParameter="{Binding Email}" WidthRequest="200"/>
-                                        <Button Text="Remove" Command="{Binding Source={x:Reference Name=GetContactsPage}, Path=BindingContext.RemoveContactCommand}" CommandParameter="{Binding Email}" MaximumWidthRequest="200"/>
+                                <Frame Padding="10" CornerRadius="10" HasShadow="True" HorizontalOptions="Center">
+                                    <StackLayout HorizontalOptions="Center">
+                                        <Label Text="{Binding FirstName}" FontAttributes="Bold" FontSize="18" TextColor="#333" Padding="5,0,0,0"/>
+                                        <Label Text="{Binding LastName}"/>
+                                        <StackLayout Spacing="5" HorizontalOptions="Center">
+                                            <Label Text="{Binding Email}"/>
+                                            <Label Text="{Binding Phone}"/>
+                                            <Label Text="{Binding Address}"/>
+                                            <Label Text="{Binding Id}" Margin="0,0,0,10"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Spacing="10">
+                                            <Button Text="Update" Command="{Binding Path=NavigateToUpdateCommand, Source={RelativeSource AncestorType={x:Type pagemodels:GetContactsPageModel}}}" CommandParameter="{Binding Email}" MaximumWidthRequest="200"/>
+                                            <Button Text="Remove" Command="{Binding Path=RemoveContactCommand, Source={RelativeSource AncestorType={x:Type pagemodels:GetContactsPageModel}}}" CommandParameter="{Binding Email}" MaximumWidthRequest="200"/>
+                                        </StackLayout>
                                     </StackLayout>
-                                </StackLayout>
+                                </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

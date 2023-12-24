@@ -10,7 +10,7 @@ public class ContactService : IContactService
     private List<IContact> _contactList;
     private readonly IJsonWriter _writer;
     private readonly IJsonReader _reader;
-    
+
 
     public ContactService(IJsonWriter writer, IJsonReader reader)
     {
@@ -75,22 +75,29 @@ public class ContactService : IContactService
     {
         try
         {
-            IContact existingContact = GetContact(contact.Email);
-
-            if (existingContact is not null)
+            if (contact is not null)
             {
-                existingContact.FirstName = contact.FirstName ?? existingContact.FirstName;
-                existingContact.LastName = contact.LastName ?? existingContact.LastName;
-                existingContact.Email = contact.Email ?? existingContact.Email;
-                existingContact.Phone = contact.Phone ?? existingContact.Phone;
-                existingContact.Address = contact.Address ?? existingContact.Address;
-                existingContact.Id = contact.Id != Guid.Empty ? contact.Id : existingContact.Id;
+                IContact existingContact = GetContact(contact.Email);
 
-                _writer.SaveToFile(_contactList);
-                return true;
+                if (existingContact is not null)
+                {
+                    existingContact.FirstName = contact.FirstName ?? existingContact.FirstName;
+                    existingContact.LastName = contact.LastName ?? existingContact.LastName;
+                    existingContact.Email = contact.Email ?? existingContact.Email;
+                    existingContact.Phone = contact.Phone ?? existingContact.Phone;
+                    existingContact.Address = contact.Address ?? existingContact.Address;
+                    existingContact.Id = contact.Id != Guid.Empty ? contact.Id : existingContact.Id;
+
+                    _writer.SaveToFile(_contactList);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
-        catch (Exception ex) 
+        catch (Exception ex)
         {
             Debug.WriteLine(ex.Message);
         }
