@@ -11,16 +11,5 @@ namespace AddressBookMauiMobile
             InitializeComponent();
             BindingContext = _pageModel = pageModel;
         }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            LoadContacts();
-        }
-
-        private void LoadContacts()
-        {
-            _pageModel.LoadContactsAtStart();
-        }
     }
 }

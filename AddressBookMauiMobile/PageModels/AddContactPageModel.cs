@@ -1,5 +1,4 @@
-﻿using ClassLibrary_AdressBook.Models;
-using ClassLibrary_AdressBook.Interfaces;
+﻿using ClassLibrary_AdressBook.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Contact = ClassLibrary_AdressBook.Models.Contact;
