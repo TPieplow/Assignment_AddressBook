@@ -26,18 +26,16 @@ namespace AddressBookMauiMobile
             builder.Services.AddSingleton<IJsonWriter, JsonWriter>();
             builder.Services.AddSingleton<IContact, Contact>();
             builder.Services.AddSingleton<IContactService, ContactService>();
-            builder.Services.AddSingleton<ContactListEventHandler>();
-
-            builder.Services.AddScoped<GetContactsPageModel>();
             builder.Services.AddSingleton<ObservableCollection<IContact>>();
             builder.Services.AddSingleton<UpdateContactPageModel>();
             builder.Services.AddSingleton<AddContactPageModel>();
-
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<MainPageModel>();
             builder.Services.AddSingleton<AddContactPage>();
             builder.Services.AddSingleton<GetContactsPage>();
             builder.Services.AddSingleton<UpdateContactPage>();
+
+            builder.Services.AddScoped<GetContactsPageModel>();
 
 
             return builder.Build();

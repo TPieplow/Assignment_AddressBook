@@ -1,10 +1,6 @@
-﻿using AddressBookMauiMobile.EventArguments;
-using ClassLibrary_AdressBook.Interfaces;
+﻿using ClassLibrary_AdressBook.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Diagnostics;
 
 namespace AddressBookMauiMobile.PageModels;
 
@@ -15,8 +11,7 @@ public partial class UpdateContactPageModel : ObservableObject
     private readonly IContactService _contactService;
     private readonly IJsonReader _reader;
 
-
-    public UpdateContactPageModel(IContactService contactService, IJsonReader reader, ContactListEventHandler contactListEventHandler)
+    public UpdateContactPageModel(IContactService contactService, IJsonReader reader)
     {
         _contactService = contactService;
         _reader = reader;

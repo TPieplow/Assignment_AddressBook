@@ -1,10 +1,8 @@
 ﻿using AddressBookMauiMobile.EventArguments;
 using ClassLibrary_AdressBook.Interfaces;
-using ClassLibrary_AdressBook.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Diagnostics;
 
 namespace AddressBookMauiMobile.PageModels;
@@ -16,26 +14,15 @@ public partial class GetContactsPageModel : ObservableObject
 
     private readonly IContactService _contactService;
     private readonly UpdateContactPageModel _updateContact;
-    private readonly MainPageModel _mainPageModel;
-    private readonly ContactListEventHandler _contactListEventHandler;
-    private readonly IJsonReader _reader;
     private readonly AddContactPageModel _addContactPageModel;
 
-    public GetContactsPageModel(IContactService contactService, UpdateContactPageModel updateContact, MainPageModel mainPageModel, IJsonReader reader, ContactListEventHandler contactListEventHandler, AddContactPageModel addContactPageModel)
+    public GetContactsPageModel(IContactService contactService, UpdateContactPageModel updateContact, AddContactPageModel addContactPageModel)
     {
         _contactService = contactService;
         _updateContact = updateContact;
         ContactList = new ObservableCollection<IContact>(_contactService.GetContacts());
-        _mainPageModel = mainPageModel;
-        _reader = reader;
-        _reader.LoadFromFile();
-        LoadContactsAtStart();
-        UpdateContactList(_contactService.GetContacts());
 
-        _contactListEventHandler = contactListEventHandler;
-        _contactListEventHandler.CollectionChanged += ContactList_CollectionChanged!;
-
-        addContactPageModel.ContactAdded += OnContactAdded;
+        addContactPageModel.ContactAdded += OnContactAdded!;
         _addContactPageModel = addContactPageModel;
     }
 
@@ -43,26 +30,8 @@ public partial class GetContactsPageModel : ObservableObject
     {
         if (ContactList is not null)
         {
-            ContactList.Add((IContact)e.AddedContact);
+            ContactList.Add(e.AddedContact);
             OnPropertyChanged(nameof(ContactList));
-        }
-    }
-
-    private void ContactList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-    {
-        OnPropertyChanged(nameof(ContactList));
-    }
-
-    private void LoadContactsAtStart()
-    {
-        try
-        {
-            ObservableCollection<IContact> loadedContacts = _mainPageModel.ContactList;
-            UpdateContactList(loadedContacts);
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine(ex.Message);
         }
     }
 

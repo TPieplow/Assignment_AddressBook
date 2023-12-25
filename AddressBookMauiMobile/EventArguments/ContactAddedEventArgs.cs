@@ -9,6 +9,6 @@ public class ContactAddedEventArgs : EventArgs
 
     public ContactAddedEventArgs(IContact addedContact)
     {
-        AddedContact = (IContact?)addedContact!;
+        AddedContact = addedContact!;
     }
 }
