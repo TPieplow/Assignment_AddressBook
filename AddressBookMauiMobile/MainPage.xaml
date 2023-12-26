@@ -10,52 +10,58 @@
     <ScrollView>
         <Grid
             BackgroundColor="#2ca9bc">
-
-            <VerticalStackLayout
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
-                Margin="0,150,0,0">
-
-                <Label
-                    Text="Welcome to Address Book"
-                    FontSize="46" />
-
-                <Label
-                    Text="A simple way to store you contacts"
-                    FontSize="16"
-                    HorizontalOptions="Center" />
-
-            </VerticalStackLayout>
-
-            <HorizontalStackLayout
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Spacing="10">
-
-                <Image
-                    Source="contactbook.png"
-                    HorizontalOptions="Center"
-                    HeightRequest="200" />
-
-            </HorizontalStackLayout>
             
-            <HorizontalStackLayout
+            <VerticalStackLayout VerticalOptions="Center">
+                
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    Margin="0,100,0,40">
+
+                    <Label
+                        Text="Welcome to Address Book"
+                        FontSize="46"
+                        FontAttributes="Bold"/>
+
+                    <Label
+                        Text="A simple way to store your contacts"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        FontAttributes="Italic"/>
+
+                </VerticalStackLayout>
+
+                <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="10">
+
+                    <Image
+                        Source="contactbook.png"
+                        HorizontalOptions="Center"
+                        HeightRequest="200"
+                        Margin="0,0,0,30"/>
+
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout
                     HorizontalOptions="Center"
                     VerticalOptions="CenterAndExpand"
                     Margin="0,0,0,300"
                     Spacing="30">
 
-                <Button
-                    Text="Add Contact"
-                    Command="{Binding NavigateToAddContactCommand}"
-                    MinimumWidthRequest="200" />
+                    <Button
+                        Text="Add Contact"
+                        Command="{Binding NavigateToAddContactCommand}"
+                        MinimumWidthRequest="200" />
 
-                <Button
-                    Text="Contacts"
-                    Command="{Binding NavigateToGetContactsCommand}"
-                    MinimumWidthRequest="200" />
+                    <Button
+                        Text="Contacts"
+                        Command="{Binding NavigateToGetContactsCommand}"
+                        MinimumWidthRequest="200" />
 
-            </HorizontalStackLayout>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
         </Grid>
     </ScrollView>
 

@@ -9,29 +9,95 @@
              Title="GetContactsPage"
              >
 
-    <Grid VerticalOptions="Center" HorizontalOptions="Center">
+    <Grid
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        BackgroundColor="#333"
+        Padding="10">
+        
         <ScrollView>
-            <StackLayout HorizontalOptions="Center">
-                <ListView ItemsSource="{Binding ContactList}" HasUnevenRows="True" HorizontalOptions="Center">
+            
+            <StackLayout
+                HorizontalOptions="Center">
+                
+                <Label
+                    Text="Welcome to the contact page!"
+                    FontSize="38" TextColor="#FFA07A"
+                    HorizontalOptions="Center"
+                    Margin="0,40,0,0"/>
+                
+                <ListView
+                    ItemsSource="{Binding ContactList}"
+                    HasUnevenRows="True"
+                    HorizontalOptions="Center">
+                    
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="model:Contact">
+                        
+                        <DataTemplate
+                            x:DataType="model:Contact">
+                            
                             <ViewCell>
-                                <Frame Padding="10" CornerRadius="10" HasShadow="True" HorizontalOptions="Center">
-                                    <StackLayout HorizontalOptions="Center">
-                                        <Label Text="{Binding FirstName}" FontAttributes="Bold" FontSize="18" TextColor="#333" Padding="5,0,0,0"/>
-                                        <Label Text="{Binding LastName}"/>
-                                        <StackLayout Spacing="5" HorizontalOptions="Center">
-                                            <Label Text="{Binding Email}"/>
-                                            <Label Text="{Binding Phone}"/>
-                                            <Label Text="{Binding Address}"/>
-                                            <Label Text="{Binding Id}" Margin="0,0,0,10"/>
+                                
+                                <Border
+                                    Padding="80"
+                                    Margin="80"
+                                    HorizontalOptions="Center"
+                                    BackgroundColor="#FFF5E1">
+                                    
+                                    <StackLayout
+                                        HorizontalOptions="Center">
+                                        
+                                        <Label
+                                            Text="{Binding FirstName}"
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            TextColor="#333"
+                                            Padding="0,0,2,0"/>
+                                        
+                                        <Label
+                                            Text="{Binding LastName}"/>
+                                        
+                                        <StackLayout
+                                            Spacing="5"
+                                            HorizontalOptions="Center">
+                                            
+                                            <Label
+                                                Text="{Binding Email}"/>
+                                            
+                                            <Label
+                                                Text="{Binding Phone}"/>
+                                            
+                                            <Label
+                                                Text="{Binding Address}"/>
+                                            
+                                            <Label
+                                                Text="{Binding Id}"
+                                                Margin="0,0,0,10"/>
+                                            
                                         </StackLayout>
-                                        <StackLayout Orientation="Horizontal" Spacing="10">
-                                            <Button Text="Update" Command="{Binding Path=NavigateToUpdateCommand, Source={RelativeSource AncestorType={x:Type pagemodels:GetContactsPageModel}}}" CommandParameter="{Binding Email}" MaximumWidthRequest="200"/>
-                                            <Button Text="Remove" Command="{Binding Path=RemoveContactCommand, Source={RelativeSource AncestorType={x:Type pagemodels:GetContactsPageModel}}}" CommandParameter="{Binding Email}" MaximumWidthRequest="200"/>
+                                        
+                                        <StackLayout
+                                            Orientation="Horizontal"
+                                            Spacing="10"
+                                            Margin="0,20,0,0">
+                                            
+                                            <Button
+                                                Text="Update"
+                                                Command="{Binding Path=NavigateToUpdateCommand, Source={RelativeSource AncestorType={x:Type pagemodels:GetContactsPageModel}}}"
+                                                CommandParameter="{Binding Email}"
+                                                MaximumWidthRequest="200"
+                                                BackgroundColor="#FFA07A" />
+                                            
+                                            <Button
+                                                Text="Remove"
+                                                Command="{Binding Path=RemoveContactCommand, Source={RelativeSource AncestorType={x:Type pagemodels:GetContactsPageModel}}}"
+                                                CommandParameter="{Binding Email}"
+                                                MaximumWidthRequest="200"
+                                                BackgroundColor="#FFA07A"/>
+                                            
                                         </StackLayout>
                                     </StackLayout>
-                                </Frame>
+                                </Border>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

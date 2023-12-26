@@ -6,21 +6,79 @@
              x:DataType="{x:Type pagemodels:UpdateContactPageModel}"
              Title="UpdateContactPage">
 
-    <VerticalStackLayout>
-        <Frame>
-            <StackLayout>
-                <Label Text="First name: "/>
-                <Entry Text="{Binding Contact.FirstName}" MinimumWidthRequest="200" IsSpellCheckEnabled="False" IsTextPredictionEnabled="False"/>
-                <Label Text="Last name: " />
-                <Entry Text="{Binding Contact.LastName}" MinimumWidthRequest="200"/>
-                <Label Text="E-mail: " />
-                <Entry Text="{Binding Contact.Email}" MinimumWidthRequest="200"/>
-                <Label Text="Phone: " />
-                <Entry Text="{Binding Contact.Phone}" MinimumWidthRequest="200"/>
-                <Label Text="Address: " />
-                <Entry Text="{Binding Contact.Address}" MinimumWidthRequest="200"/>
-                <Button Text="Update" Command="{Binding SaveAndUpdateCommand}" />
-            </StackLayout>
-        </Frame>
-    </VerticalStackLayout>
+    <ScrollView>
+        <Grid BackgroundColor="#e74c3c">
+
+            <VerticalStackLayout
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Margin="0,50,0,0"
+                MinimumWidthRequest="300">
+
+                <Border
+                    Background="AliceBlue"
+                    Margin="-50"
+                    Padding="30">
+
+                    <StackLayout Spacing="20">
+
+                        <Label
+                            Text="First name "
+                            FontAttributes="Bold"
+                            FontSize="16"/>
+
+
+                        <Entry
+                            Text="{Binding Contact.FirstName}"
+                            MinimumWidthRequest="200"
+                            IsSpellCheckEnabled="False"
+                            IsTextPredictionEnabled="False"/>
+
+                        <Label
+                            Text="Last name "
+                            FontAttributes="Bold"
+                            FontSize="16"/>
+
+                        <Entry
+                            Text="{Binding Contact.LastName}"
+                            MinimumWidthRequest="200"/>
+
+                        <Label
+                            Text="E-mail "
+                            FontAttributes="Bold"
+                            FontSize="16"/>
+
+                        <Entry
+                            Text="{Binding Contact.Email}"
+                            MinimumWidthRequest="200"/>
+
+                        <Label
+                            Text="Phone "
+                            FontAttributes="Bold"
+                            FontSize="16"/>
+
+                        <Entry
+                            Text="{Binding Contact.Phone}"
+                            MinimumWidthRequest="200"/>
+
+                        <Label
+                            Text="Address "
+                            FontAttributes="Bold"
+                            FontSize="16"/>
+
+                        <Entry
+                            Text="{Binding Contact.Address}"
+                            MinimumWidthRequest="200"/>
+
+                        <Button
+                            Text="Update"
+                            Command="{Binding SaveAndUpdateCommand}"
+                            BackgroundColor="#f39c12"
+                            Margin="0,30,0,0"/>
+
+                    </StackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>

@@ -7,28 +7,90 @@
              x:DataType="{x:Type pagemodels:AddContactPageModel}"
              >
 
-    <VerticalStackLayout HorizontalOptions="Center" Margin="0,50,0,0">
-        <Grid>
-            <Frame Padding="10" CornerRadius="10" HasShadow="True" BackgroundColor="#FFF5E1">
-                <StackLayout HorizontalOptions="Center" Spacing="10">
-                    <Label Text="Enter First Name: " FontSize="16" TextColor="#333" Padding="5,0,0,0"/>
-                    <Entry Text="{Binding NewContact.FirstName}" MinimumWidthRequest="200" IsSpellCheckEnabled="False" IsTextPredictionEnabled="False" Margin="4"/>
-
-                    <Label Text="Last name: " FontSize="16" TextColor="#333" Padding="5,0,0,0"/>
-                    <Entry Text="{Binding NewContact.LastName}" MinimumWidthRequest="200" Margin="4"/>
-
-                    <Label Text="E-mail: " FontSize="16" TextColor="#333" Padding="5,0,0,0"/>
-                    <Entry Text="{Binding NewContact.Email}" MinimumWidthRequest="200" Margin="4"/>
-
-                    <Label Text="Phone: " FontSize="16" TextColor="#333" Padding="5,0,0,0"/>
-                    <Entry Text="{Binding NewContact.Phone}" MinimumWidthRequest="200" Margin="4"/>
-
-                    <Label Text="Address: " FontSize="16" TextColor="#333" Padding="5,0,0,0"/>
-                    <Entry Text="{Binding NewContact.Address}" MinimumWidthRequest="200" Margin="4"/>
+    <ScrollView>
+        <Grid
+            BackgroundColor="#2ca9bc">
+            
+            <VerticalStackLayout
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Margin="0,50,0,0">
+                
+                <Border
+                    Padding="50"
+                    BackgroundColor="#FFF5E1"
+                    MinimumWidthRequest="350"
+                    VerticalOptions="Center">
                     
-                    <Button Command="{Binding AddContactCommand}" Text="Save" MinimumWidthRequest="200" Margin="0,10,0,20"/>
-                </StackLayout>
-            </Frame>
+                    <StackLayout
+                        HorizontalOptions="Center"
+                        Spacing="10">
+                        
+                        <Label
+                            Text="First name: "
+                            FontSize="16" TextColor="#333"
+                            Padding="5,0,0,0"/>
+                        
+                        <Entry
+                            Text="{Binding NewContact.FirstName}"
+                            MinimumWidthRequest="250"
+                            IsSpellCheckEnabled="False"
+                            IsTextPredictionEnabled="False"
+                            Margin="4"/>
+
+                        <Label
+                            Text="Last name: "
+                            FontSize="16"
+                            TextColor="#333"
+                            Padding="5,0,0,0"/>
+                        
+                        <Entry
+                            Text="{Binding NewContact.LastName}"
+                            MinimumWidthRequest="250"
+                            Margin="4"/>
+
+                        <Label
+                            Text="E-mail: "
+                            FontSize="16"
+                            TextColor="#333"
+                            Padding="5,0,0,0"/>
+                        
+                        <Entry
+                            Text="{Binding NewContact.Email}"
+                            MinimumWidthRequest="250"
+                            Margin="4"/>
+
+                        <Label
+                            Text="Phone: "
+                            FontSize="16"
+                            TextColor="#333"
+                            Padding="5,0,0,0"/>
+                        
+                        <Entry
+                            Text="{Binding NewContact.Phone}"
+                            MinimumWidthRequest="250"
+                            Margin="4"/>
+
+                        <Label
+                            Text="Address: "
+                            FontSize="16"
+                            TextColor="#333"
+                            Padding="5,0,0,0"/>
+                        
+                        <Entry
+                            Text="{Binding NewContact.Address}"
+                            MinimumWidthRequest="250"
+                            Margin="4"/>
+
+                        <Button
+                            Command="{Binding AddContactCommand}"
+                            Text="Save"
+                            MinimumWidthRequest="250"
+                            Margin="0,30,0,10"/>
+                        
+                    </StackLayout>
+                </Border>
+            </VerticalStackLayout>
         </Grid>
-    </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
