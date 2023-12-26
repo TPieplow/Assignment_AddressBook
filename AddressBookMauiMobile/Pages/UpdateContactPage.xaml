@@ -27,7 +27,6 @@
                             FontAttributes="Bold"
                             FontSize="16"/>
 
-
                         <Entry
                             Text="{Binding Contact.FirstName}"
                             MinimumWidthRequest="200"

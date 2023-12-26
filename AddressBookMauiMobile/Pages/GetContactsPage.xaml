@@ -39,6 +39,8 @@
                             <ViewCell>
                                 
                                 <Border
+                                    StrokeThickness="4"
+                                    StrokeShape="RoundRectangle 40,0,0,40"
                                     Padding="80"
                                     Margin="80"
                                     HorizontalOptions="Center"
