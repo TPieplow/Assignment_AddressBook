@@ -18,6 +18,11 @@ public partial class UpdateContactPageModel : ObservableObject
         _reader.LoadFromFile();
     }
 
+    /// <summary>
+    /// Method that finds the correct contact to update
+    /// </summary>
+    /// <param name="email">Takes email as a parameter to find the correct contact</param>
+    /// <returns></returns>
     [RelayCommand]
     public async Task ContactToUpdate(string email)
     {
@@ -34,12 +39,17 @@ public partial class UpdateContactPageModel : ObservableObject
         }
     }
 
+
+    /// <summary>
+    /// Method that updates existing contact, using e-mail as binding.
+    /// </summary>
+    /// <returns>True if writeToFile was a success</returns>
     [RelayCommand]
     public async Task SaveAndUpdate()
     {
         try
         {
-            if (!string.IsNullOrWhiteSpace(Contact?.Email))
+            if (Contact is not null && !string.IsNullOrWhiteSpace(Contact?.Email))
             {
                 var resultUpdate = _contactService!.UpdateContact(Contact);
                 if (resultUpdate)

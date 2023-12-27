@@ -1,8 +1,5 @@
-﻿using ClassLibrary_AdressBook.Interfaces;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace AddressBookMauiMobile.PageModels;
 

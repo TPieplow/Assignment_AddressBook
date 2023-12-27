@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -26,13 +26,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Assignment_AdressBook\Assignment_AdressBook.csproj" />
     <ProjectReference Include="..\ClassLibrary_AdressBook\ClassLibrary_AdressBook.csproj" />
+    <ProjectReference Include="..\ConsoleApp_AdressBook\ConsoleApp_AdressBook.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ConsoleApp_Tests\" />
-    <Folder Include="MAUI_Tests\" />
-    <Folder Include="WPF_Tests\" />
   </ItemGroup>
 
 </Project>
