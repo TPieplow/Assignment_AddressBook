@@ -5,6 +5,7 @@
              x:Class="AddressBookMauiMobile.Pages.AddContactPage"
              Title="AddContactPage"
              x:DataType="{x:Type pagemodels:AddContactPageModel}"
+             Shell.NavBarIsVisible="False"
              >
 
     <ScrollView>

@@ -77,9 +77,10 @@ public class ContactService : IContactService
         {
             if (contact is not null)
             {
-                IContact existingContact = GetContact(contact.Email);
 
-                if (existingContact is not null)
+                IContact existingContact = _contactList.FirstOrDefault(c => string.Equals(c.Email, contact.Email, StringComparison.OrdinalIgnoreCase))!;
+
+                if (existingContact is null)
                 {
                     existingContact.FirstName = contact.FirstName ?? existingContact.FirstName;
                     existingContact.LastName = contact.LastName ?? existingContact.LastName;

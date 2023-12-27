@@ -24,6 +24,10 @@ public partial class AddContactPageModel : ObservableObject
         _contactList = contactList;
     }
 
+    /// <summary>
+    /// Adds a new contact to the list and triggers an event (contact added)
+    /// </summary>
+    /// <returns>A task or false if contact couldnt be added.</returns>
     [RelayCommand]
     public async Task AddContact()
     {
@@ -41,7 +45,7 @@ public partial class AddContactPageModel : ObservableObject
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Not added", "Couldnt add contact", "OK");
+                    await Shell.Current.DisplayAlert("Not added", "Contact already exists, try with another e-mail.", "OK");
                 }
             }
         }

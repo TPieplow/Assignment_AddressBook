@@ -10,6 +10,7 @@ public partial class MainPageModel : ObservableObject
     {
         await Shell.Current.GoToAsync("AddContactPage");
     }
+
     [RelayCommand]
     private static async Task NavigateToGetContacts()
     {

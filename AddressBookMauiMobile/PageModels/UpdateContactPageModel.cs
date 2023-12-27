@@ -21,8 +21,8 @@ public partial class UpdateContactPageModel : ObservableObject
     /// <summary>
     /// Method that finds the correct contact to update
     /// </summary>
-    /// <param name="email">Takes email as a parameter to find the correct contact</param>
-    /// <returns></returns>
+    /// <param name="email">Takes email as a parameter to find the correct contact.</param>
+    /// <returns>Null if not found.</returns>
     [RelayCommand]
     public async Task ContactToUpdate(string email)
     {
@@ -59,7 +59,7 @@ public partial class UpdateContactPageModel : ObservableObject
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Couldnt update", "Contact already exist", "OK");
+                    await Shell.Current.DisplayAlert("Couldnt update", "Contact with the same e-mail already exist.", "OK");
                 }
             }
         }
