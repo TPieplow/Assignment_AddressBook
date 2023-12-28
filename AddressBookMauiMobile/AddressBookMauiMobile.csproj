@@ -57,14 +57,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Images\addressbook.svg" />
 	  <None Remove="Images\contactbook.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Images\addressbook.svg" />
 	  <MauiImage Include="Images\contactbook.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui.Markup" Version="4.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />

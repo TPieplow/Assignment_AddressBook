@@ -4,83 +4,47 @@
         {
             "$type": "ClassLibrary_AdressBook.Models.Contact, ClassLibrary_AdressBook",
             "Id": "aba78155-d3fe-4261-bdae-31a5f5310de2",
-            "firstName": "Pikachu",
-            "LastName": "pikachusson",
-            "Email": "snoppisrumpa@gmail.com",
-            "Phone": "0709505050",
-            "Address": "fjkfjk"
+            "firstName": "ted",
+            "lastName": "pieplow",
+            "Email": "ted.pieplow@gmail.com",
+            "phone": "0709505050",
+            "address": "fjkfjk"
         },
         {
             "$type": "ClassLibrary_AdressBook.Models.Contact, ClassLibrary_AdressBook",
             "Id": "aba78155-d3fe-4261-bdae-31a5f5310de2",
             "firstName": "Pikachu",
-            "LastName": "pikachusson",
+            "lastName": "pikachusson",
             "Email": "snoppisen@gmail.com",
-            "Phone": "0709505050",
-            "Address": "fjkfjk"
-        },
-        {
-            "$type": "ClassLibrary_AdressBook.Models.Contact, ClassLibrary_AdressBook",
-            "Id": "86539763-cc25-4b21-a421-53c7fb291314",
-            "firstName": "Top",
-            "LastName": "Notch",
-            "Email": "yamma@gmail.com",
-            "Phone": "333",
-            "Address": "Fglfgl"
-        },
-        {
-            "$type": "ClassLibrary_AdressBook.Models.Contact, ClassLibrary_AdressBook",
-            "Id": "0d294f02-3aec-4b0c-b64a-cb3efc8a0151",
-            "firstName": "Lol\t",
-            "LastName": "Ted",
-            "Email": "Telo@gmail.com",
-            "Phone": "333",
-            "Address": "Dfdf"
-        },
-        {
-            "$type": "ClassLibrary_AdressBook.Models.Contact, ClassLibrary_AdressBook",
-            "Id": "1980bed3-f56f-4602-a2c7-abfa5fd9c3b2",
-            "firstName": "pop",
-            "LastName": "pop",
-            "Email": "pop@gmail.com",
-            "Phone": "pop",
-            "Address": "pop"
-        },
-        {
-            "$type": "ClassLibrary_AdressBook.Models.Contact, ClassLibrary_AdressBook",
-            "Id": "ed01d6a4-d19b-4fbe-b260-77f0c0ef513d",
-            "firstName": "ted",
-            "LastName": "ted",
-            "Email": "popsnopp@gmail.com",
-            "Phone": "3030",
-            "Address": "dkdjf"
+            "phone": "0709505050",
+            "address": "fjkfjk"
         },
         {
             "$type": "ClassLibrary_AdressBook.Models.Contact, ClassLibrary_AdressBook",
             "Id": "54e3a46d-882b-46d2-b458-a352b4f45d0d",
             "firstName": "Yamma",
-            "LastName": "Yamma",
+            "lastName": "Yamma",
             "Email": "yamma@gmail.com",
-            "Phone": "3030",
-            "Address": "dlkf"
+            "phone": "3030",
+            "address": "dlkf"
         },
         {
             "$type": "ClassLibrary_AdressBook.Models.Contact, ClassLibrary_AdressBook",
-            "Id": "cb83d6de-91cf-4c05-812b-0dc4fdfe9845",
-            "firstName": "t",
-            "LastName": "t",
-            "Email": "t@gmail.com",
-            "Phone": "3434",
-            "Address": "dfdf"
+            "Id": "741c0724-87a6-4d9c-8493-539fe1c57921",
+            "firstName": "Kieran",
+            "lastName": "Pieplow",
+            "Email": "Kieran@gmail.com",
+            "phone": "3403030",
+            "address": "dkfjdkfj"
         },
         {
             "$type": "ClassLibrary_AdressBook.Models.Contact, ClassLibrary_AdressBook",
-            "Id": "a334cef9-dc17-436f-a30c-1543762b8cad",
-            "firstName": "teddf",
-            "LastName": "ted",
-            "Email": "tg@gmail.com",
-            "Phone": "5er3",
-            "Address": "dfdfdf"
+            "Id": "c12c19f6-6959-498e-94d0-967af77807d0",
+            "firstName": "Mamma",
+            "lastName": "Mamma",
+            "Email": "Mamma@gmail.com",
+            "phone": "9049449",
+            "address": "Dldflfdl"
         }
     ]
 }

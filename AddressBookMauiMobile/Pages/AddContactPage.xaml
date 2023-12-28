@@ -5,12 +5,14 @@
              x:Class="AddressBookMauiMobile.Pages.AddContactPage"
              Title="AddContactPage"
              x:DataType="{x:Type pagemodels:AddContactPageModel}"
-             Shell.NavBarIsVisible="False"
-             >
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Shell.NavBarIsVisible="False">
+             
 
     <ScrollView>
+        
         <Grid
-            BackgroundColor="#2ca9bc">
+            BackgroundColor="#333">
             
             <VerticalStackLayout
                 HorizontalOptions="Center"
@@ -37,7 +39,8 @@
                             MinimumWidthRequest="250"
                             IsSpellCheckEnabled="False"
                             IsTextPredictionEnabled="False"
-                            Margin="4"/>
+                            Margin="4"
+                            BackgroundColor="#FFF5E1" />
 
                         <Label
                             Text="Last name: "
@@ -48,7 +51,8 @@
                         <Entry
                             Text="{Binding NewContact.LastName}"
                             MinimumWidthRequest="250"
-                            Margin="4"/>
+                            Margin="4"
+                            BackgroundColor="#FFF5E1" />
 
                         <Label
                             Text="E-mail: "
@@ -59,7 +63,8 @@
                         <Entry
                             Text="{Binding NewContact.Email}"
                             MinimumWidthRequest="250"
-                            Margin="4"/>
+                            Margin="4"
+                            BackgroundColor="#FFF5E1" />
 
                         <Label
                             Text="Phone: "
@@ -70,7 +75,8 @@
                         <Entry
                             Text="{Binding NewContact.Phone}"
                             MinimumWidthRequest="250"
-                            Margin="4"/>
+                            Margin="4"
+                            BackgroundColor="#FFF5E1" />
 
                         <Label
                             Text="Address: "
@@ -81,13 +87,15 @@
                         <Entry
                             Text="{Binding NewContact.Address}"
                             MinimumWidthRequest="250"
-                            Margin="4"/>
+                            Margin="4"
+                            BackgroundColor="#FFF5E1" />
 
                         <Button
                             Command="{Binding AddContactCommand}"
                             Text="Save"
                             MinimumWidthRequest="250"
-                            Margin="0,30,0,10"/>
+                            Margin="0,30,0,10"
+                            BackgroundColor="#FFA07A"/>
                         
                     </StackLayout>
                 </Border>

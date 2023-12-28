@@ -9,4 +9,9 @@ public partial class AddContactPage : ContentPage
 		InitializeComponent();
 		BindingContext = pageModel;
 	}
+
+    private void Entry_Focused(object sender, FocusEventArgs e)
+    {
+
+    }
 }

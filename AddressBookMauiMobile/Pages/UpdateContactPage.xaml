@@ -7,7 +7,7 @@
              Title="UpdateContactPage">
 
     <ScrollView>
-        <Grid BackgroundColor="#e74c3c">
+        <Grid BackgroundColor="#333">
 
             <VerticalStackLayout
                 HorizontalOptions="Center"
@@ -16,7 +16,7 @@
                 MinimumWidthRequest="300">
 
                 <Border
-                    Background="AliceBlue"
+                    BackgroundColor="#FFF5E1"
                     Margin="-50"
                     Padding="30">
 
@@ -72,7 +72,7 @@
                         <Button
                             Text="Update"
                             Command="{Binding SaveAndUpdateCommand}"
-                            BackgroundColor="#f39c12"
+                            BackgroundColor="#FFA07A"
                             Margin="0,30,0,0"/>
 
                     </StackLayout>
