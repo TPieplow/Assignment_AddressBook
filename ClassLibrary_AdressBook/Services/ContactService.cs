@@ -75,27 +75,29 @@ public class ContactService : IContactService
     {
         try
         {
-            if (contact is not null)
+            if (contact is null)
             {
+                Debug.WriteLine("Contact is null.");
+                return false;
+            }
 
-                IContact existingContact = _contactList.FirstOrDefault(c => string.Equals(c.Email, contact.Email, StringComparison.OrdinalIgnoreCase))!;
+            IContact existingContact = _contactList.FirstOrDefault(c => string.Equals(c.Email, contact?.Email, StringComparison.OrdinalIgnoreCase))!;
 
-                if (existingContact is null)
-                {
-                    existingContact.FirstName = contact.FirstName ?? existingContact.FirstName;
-                    existingContact.LastName = contact.LastName ?? existingContact.LastName;
-                    existingContact.Email = contact.Email ?? existingContact.Email;
-                    existingContact.Phone = contact.Phone ?? existingContact.Phone;
-                    existingContact.Address = contact.Address ?? existingContact.Address;
-                    existingContact.Id = contact.Id != Guid.Empty ? contact.Id : existingContact.Id;
+            if (existingContact is not null)
+            {
+                existingContact.FirstName = contact?.FirstName ?? existingContact.FirstName;
+                existingContact.LastName = contact?.LastName ?? existingContact.LastName;
+                existingContact.Email = contact?.Email ?? existingContact.Email;
+                existingContact.Phone = contact?.Phone ?? existingContact.Phone;
+                existingContact.Address = contact?.Address ?? existingContact.Address;
+                existingContact.Id = contact?.Id != Guid.Empty ? contact.Id : existingContact.Id;
 
-                    _writer.SaveToFile(_contactList);
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                _writer.SaveToFile(_contactList);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         catch (Exception ex)
@@ -121,5 +123,20 @@ public class ContactService : IContactService
             }
         }
         catch (Exception ex) { Debug.WriteLine($"{ex.Message}"); }
+    }
+
+    public bool EmailExists(string email)
+    {
+        try
+        {
+            List<IContact> readContactsFromFile = _reader.LoadFromFile();
+
+            return readContactsFromFile.Any(c => string.Equals(c.Email, email, StringComparison.OrdinalIgnoreCase));
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            return false;
+        }
     }
 }

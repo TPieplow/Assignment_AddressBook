@@ -39,5 +39,7 @@
         /// <param name="contact">Takes contact as a parameter to search via email</param>
         /// <returns>True if updated and saved to list/file, else false</returns>
         bool UpdateContact(IContact contact);
+
+        bool EmailExists(string email);
     }
 }

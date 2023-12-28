@@ -28,7 +28,7 @@ public partial class GetContactsPageModel : ObservableObject
 
     /// <summary>
     /// Event handler for the ContactAdded event.
-    /// Adds the newly added contact to the COntactList and triggers an update notification.
+    /// Adds the new contact to the COntactList and triggers an update notification.
     /// </summary>
     /// <param name="sender">The object to raise the event</param>
     /// <param name="e">Event argument that holds information about the added contact</param>

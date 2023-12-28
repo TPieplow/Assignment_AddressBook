@@ -1,6 +1,5 @@
 ﻿using Assignment_AdressBook.Interfaces;
 using ClassLibrary_AdressBook.Interfaces;
-using ClassLibrary_AdressBook.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,16 +48,26 @@ public partial class UpdateContactViewModel : ObservableObject, IUpdateContactVi
     {
         try
         {
-            var resultUpdate = _contactService.UpdateContact(contact);
-            if (resultUpdate)
+            bool emailExist = _contactService!.EmailExists(contact.Email);
+            if (!emailExist)
             {
-                MessageBox.Show("Contact successfully updated.");
+                var resultUpdate = _contactService.UpdateContact(contact);
+                if (resultUpdate)
+                {
+                    MessageBox.Show("Contact successfully updated.");
+                }
+                else
+                {
+                    MessageBox.Show("Couldnt update contact, please try again.");
+                }
             }
             else
             {
-                MessageBox.Show("Couldnt update contact, please try again.");
+                MessageBox.Show("Contact with the same email already exists.");
             }
-        } catch (Exception ex)
+
+        }
+        catch (Exception ex)
         {
             MessageBox.Show($"An error occurred: '{ex.Message}' ");
         }

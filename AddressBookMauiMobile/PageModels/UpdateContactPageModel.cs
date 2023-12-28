@@ -39,7 +39,6 @@ public partial class UpdateContactPageModel : ObservableObject
         }
     }
 
-
     /// <summary>
     /// Method that updates existing contact, using e-mail as binding.
     /// </summary>
@@ -51,15 +50,25 @@ public partial class UpdateContactPageModel : ObservableObject
         {
             if (Contact is not null && !string.IsNullOrWhiteSpace(Contact?.Email))
             {
-                var resultUpdate = _contactService!.UpdateContact(Contact);
-                if (resultUpdate)
+                bool emailExist = _contactService!.EmailExists(Contact.Email);
+
+                if (emailExist)
                 {
-                    await Shell.Current.DisplayAlert("Updated", "Contact successfully updated.", "OK");
-                    await Shell.Current.GoToAsync("..");
+                    await Shell.Current.DisplayAlert("Couldnt update", "Contact already exists", "OK");
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Couldnt update", "Contact with the same e-mail already exist.", "OK");
+
+                    bool resultUpdate = _contactService!.UpdateContact(Contact);
+                    if (resultUpdate)
+                    {
+                        await Shell.Current.DisplayAlert("Updated", "Contact successfully updated.", "OK");
+                        await Shell.Current.GoToAsync("..");
+                    }
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Couldnt update", "Contact with the same e-mail already exist.", "OK");
+                    }
                 }
             }
         }

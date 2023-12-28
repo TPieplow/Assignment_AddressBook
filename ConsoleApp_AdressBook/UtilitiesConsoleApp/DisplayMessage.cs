@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp_AdressBook.ServiceConsoleApp;
+﻿namespace ConsoleApp_AdressBook.UtilitiesConsoleApp;
 
 public class DisplayMessage
 {
